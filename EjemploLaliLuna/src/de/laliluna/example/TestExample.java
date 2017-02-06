@@ -8,13 +8,13 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class TestExample
 {
     private static Logger log = Logger.getLogger(TestExample.class);
-
 
 
     private static Honey createHoney()
@@ -32,7 +32,7 @@ public class TestExample
         session.close();
         return forestHoney;
     }
-    
+
     //The method update creates a new object using our last method, changes the name and updates the object using session.update.
     private static void update()
     {
@@ -44,7 +44,7 @@ public class TestExample
         tx.commit();
         session.close();
     }
-    
+
     //The method delete creates an object and deletes it by calling session.delete.
     private static void delete()
     {
@@ -55,8 +55,8 @@ public class TestExample
         tx.commit();
         session.close();
     }
-    
-    // The tables are emptied with the method clean. 
+
+    // The tables are emptied with the method clean.
     // The method session.createQuery creates a new query and runs it by calling executeUpdate.
     private static void clean()
     {
@@ -67,28 +67,27 @@ public class TestExample
         tx.commit();
         session.close();
     }
-    
-    //The method createRelation shows, how to create objects and set an association between these objects. 
+
+    //The method createRelation shows, how to create objects and set an association between these objects.
     //This will write a foreign key relation to the database.
     private static void createRelation()
     {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = InitSessionFactory.getInstance().getCurrentSession();
         Transaction tx = session.beginTransaction();
-        Honey honey = new Honey();
-        honey.setName("country honey");
-        honey.setTaste("Delicious");
-        session.save(honey);
-        Bee bee = new Bee("Sebastian");
-        session.save(bee);
+        Honey honig = new Honey();
+        honig.setName("OdenwaldHonig");
+        honig.setTaste("Herrlich, geschmeidig im Abgang");
+        session.save(honig);
+        Bee biene = new Bee("Sonja");
+        session.save(biene);
 
-        /* create the relation on both sides */
-        bee.setHoney(honey);
-        honey.getBees().add(bee);
+        // Beziehung auf beiden Seiten erstellen
+        biene.setHoney(honig);
+        honig.getBees().add(biene);
         tx.commit();
-        session.close();
     }
-    
-    //The method query shows how to query all honeys in the database. 
+
+    //The method query shows how to query all honeys in the database.
     //The call to session.createQuery creates the query and list() runs the query and returns a list of Honey objects.
     private static void query()
     {
@@ -103,26 +102,43 @@ public class TestExample
         tx.commit();
         session.close();
     }
-    
+
     public static void main(String[] args)
     {
         /* clean tables */
-        clean();
+        try
+        {
+            //clean();
 
-        /* simple create example */
-        createHoney();
+            /* simple create example */
+            //createHoney();
 
-        /* relation example */
-        createRelation();
+            /* relation example */
+            createRelation();
 
-        /* delete example */
-        delete();
+            /* delete example */
+            //delete();
 
-        /* update example */
-        update();
+            /* update example */
+            //update();
 
-        /* query example */
-        query();
+            /* query example */
+            //query();
+        }
+        catch (RuntimeException e)
+        {
+            try
+            {
+                Session session = InitSessionFactory.getInstance().getCurrentSession();
+                if (session.getTransaction().isActive())
+                    session.getTransaction().rollback();
+            }
+            catch (HibernateException el)
+            {
+                log.error("Fehler beim Rollback der Transaktion");
+            }
+            throw e;
+        }
     }
 }
 

@@ -2,19 +2,24 @@
 <!DOCTYPE hibernate-configuration PUBLIC
      "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
      "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!-- zeige alle sql statements -->
+<!-- erstellt die tabellen in der datenbank -->
 <hibernate-configuration>
     <session-factory>
         <property name="connection.url">jdbc:mysql://localhost/learninghibernate</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">leonel</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        <property name="connection.password">leonel</property>
+        <!--<property name="cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+        -->
         <property name="current_session_context_class">thread</property>
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
-        <mapping class="de.laliluna.example.Honey"/>
-        <mapping class="de.laliluna.example.Bee"/>
+        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+        <property name="transaction.auto_close_session">true</property>
+        <!-- zeige alle sql statements -->
+        <property name="show_sql">true</property>
+        <!-- erstellt die tabellen in der datenbank -->
+        <property name="hbm2ddl.auto">update</property>
         <mapping resource="de/laliluna/example/Honey.hbm.xml"/>
         <mapping resource="de/laliluna/example/Bee.hbm.xml"/>
     </session-factory>
