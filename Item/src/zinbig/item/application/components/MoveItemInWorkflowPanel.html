@@ -1,0 +1,56 @@
+<wicket:panel>
+<div class="tab">
+
+	<form wicket:id="moveItemInWorkflowForm">
+		<div class="small">			
+			<div class="heading">  
+				<div>  
+				<wicket:message key="moveItemInWorkflowForm.currentNode">Estado actual</wicket:message>:
+				<b><span wicket:id="currentNode"></span></b>
+				</div>				
+			</div>
+			<div class="heading" style="width: 100%;height: 10px;">
+				
+			</div>
+			<div class="headingRequired">  
+				<div> 
+				<span wicket:id="nextNodeLabelRequired" class="requiredField">*</span>&nbsp;<span wicket:id="nextNodeLabel"></span>				
+				</div>
+				<select class="select" tabindex=1 wicket:id="nextNode">	</select>
+				<div class="errorS" wicket:id="nextNodeMIIWFFeedback"></div>
+			</div>		
+			<div class="headingRequired">  
+				<div> 
+				<span wicket:id="nextResponsibleLabelRequired" class="requiredField">*</span>&nbsp;<span wicket:id="nextResponsibleLabel"></span>					
+				</div>
+				<select class="select" tabindex=3 wicket:id="nextResponsible">	</select>
+				<div class="errorS" wicket:id="nextResponsibleMIIWFFeedback"></div>
+			</div>		
+
+			<div class="heading" style="width: 100%;height: 10px;">
+				
+			</div>
+			
+			<a wicket:id="submitLink" class="sendButtonRight"><wicket:message key="moveItemInWorkflowForm.send">Enviar</wicket:message></a>	
+			</div>
+			<div class="heading" style="width: 100%;height: 20px;">
+				
+			</div>
+			
+	</form>
+			<div>
+					<table class="grilla2" cellpadding="0" cellspacing="0">
+         				<tr style="height: 20px;">            	
+                			<td class="text" style="width: 30%"><wicket:message key="editItemForm.title">Título</wicket:message></td>				
+                			<td class="text" style="width: 30%"><wicket:message key="editItemForm.creationDate">Fecha creación</wicket:message></td>
+                			<td class="text" style="width: 40%"><wicket:message key="editItemForm.responsible">Responsable</wicket:message></td>                 
+            			</tr>
+           				<tr wicket:id="oldNodesPageable">
+							<td class="title"><span wicket:id="title">Título</span></td>				
+							<td class="title"><span wicket:id="creationDate">Fecha</span></td>
+							<td class="title"><span wicket:id="responsible">Responsable</span></td>
+						</tr>
+					</table>
+			</div>
+</div>
+</wicket:panel>

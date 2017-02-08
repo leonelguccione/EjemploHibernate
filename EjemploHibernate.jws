@@ -26,5 +26,6 @@
    <list n="listOfChildren">
       <hash><url n="URL" path="EjemploHibernate/EjemploHibernate.jpr"/></hash>
       <hash><url n="URL" path="EjemploLaliLuna/EjemploLaliLuna.jpr"/></hash>
+      <hash><url n="URL" path="Item/Item.jpr"/></hash>
    </list>
 </jws:workspace>

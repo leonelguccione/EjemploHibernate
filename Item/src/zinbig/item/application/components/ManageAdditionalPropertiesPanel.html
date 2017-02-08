@@ -1,0 +1,78 @@
+<wicket:panel>
+<div class="tab">
+	<form wicket:id="addAdditionalPropertyForm">
+	<div class="small">
+		<div class="headingRequired">  
+			<div> 
+		    <wicket:message key="addAdditionalPropertyForm.name">Nombre</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=1 type="text" wicket:id="nameAAPF" />
+			<div class="errorC" wicket:id="nameAAPFFeedback"></div>
+		</div>	
+		<div class="headingRequired">  
+			<div>
+			<wicket:message key="addAdditionalPropertyForm.requiredProperty">Propiedad requerida?</wicket:message>
+			</div>
+			<input type="checkbox" tabindex=2 wicket:id="requiredProperty" />
+			<div class="errorC" wicket:id="requiredPropertyAAPFFeedback"></div>
+		</div>	
+		<div class="headingRequired">  
+			<div>
+			<wicket:message key="addAdditionalPropertyForm.type">Tipo de propiedad</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<select class="select" tabindex=3 wicket:id="type">	</select>
+			<div class="errorS" wicket:id="typeAAPFFeedback"></div>
+		</div>	
+		<div class="heading" style="width: 100%;height: 20px;">
+			
+		</div>
+		<div class="headingRequired">  
+			
+			<textarea tabindex=4 class="textarea" wicket:id="valueAAPF" rows="4"></textarea>
+			<div class="errorT" wicket:id="valueAAPFFeedback"></div>
+		</div>	
+					   
+	</div>
+	<div class="heading" style="width: 100%;height: 10px;">
+			
+	</div>
+	<input class="resetButton" type="Reset"/>
+	<a wicket:id="saveLink" class="sendButtonRight"><wicket:message	key="addPriorityForm.save">Enviar</wicket:message></a>
+	</form>
+	<div class="heading" style="width: 100%;height: 20px;">
+			
+	</div>
+	
+	
+	<div class="warning2" wicket:id="noResultsLabel">
+	</div>
+	<form wicket:id="deleteAdditionalPropertyForm">
+	<div class="errorControlTableTab" wicket:id="feedback">Feedback</div> 
+	
+
+	<div class="controlsTable">
+		<ul class="actionTable">			
+            <li><a class="delete" wicket:id="deletePropertiesLink"><wicket:message key="listAdditionalPropertiesPanel.deleteAdditionalProperties">Eliminar propiedades</wicket:message></a></li>            
+        </ul>    
+         
+	</div>
+	<span wicket:id="group">
+	<table class="grilla"  cellpadding="0" cellspacing="0">
+         	<tr style="height: 20px;">
+            	<th style="width:20px;"><input type="checkbox" wicket:id="groupselector">&nbsp;</input></th>
+                <th style="width: 10px;" >&nbsp;</th>
+                <th ><a wicket:id="sortByNameLink"><wicket:message key="listAdditionalPropertiesPanel.name">Nombre</wicket:message></a></th>				
+                <th ><wicket:message key="listAdditionalPropertiesPanel.type">Tipo</wicket:message></th>
+            </tr>
+           	<tr wicket:id="pageable">
+				<td><input style="display:block!important;"  type="checkbox" wicket:id="cb"/></td>
+				<td><img src="/Item/images/blank.png" alt="No se borra"/></td>	
+				<td><span wicket:id="name">Nombre</span></td>
+				<td><span wicket:id="type">Valor</span></td>
+			</tr>
+	</table>	
+	</span>
+
+	</form>	
+</div>
+</wicket:panel>

@@ -1,0 +1,49 @@
+<wicket:panel>
+<div class="tab">
+	
+	<form wicket:id="attachFileForm">
+		<div class="small">
+			<div class="headingRequired">  
+				<div>
+				<wicket:message key="attachFileForm.attachedFiles">Archivos adjuntos</wicket:message>
+				</div>
+				<input wicket:id="attachedFile" type="file"/>
+				 <div class="errorC" wicket:id="attachedAFFFeedback"></div>
+			</div>
+			<div class="heading" style="width: 100%;height: 10px;">				
+			</div>
+			
+			<a wicket:id="submitLink" class="sendButtonRight"><wicket:message key="attachFileForm.send">Enviar</wicket:message></a>	
+		</div>
+	</form>	
+		<div class="heading" style="width: 100%;height: 20px;">				
+		</div>
+	
+	<form wicket:id="detachForm">
+		
+		 <div class="errorControlTableTab" wicket:id="feedback">Feedback</div>
+		<div class="controlsTable">
+		<ul class="actionTable">			
+            <li><a class="delete" wicket:id="deleteAttachedFilesLink"><wicket:message key="attachFileForm.deleteAttachedFiles">Eliminar adjuntos</wicket:message></a></li>            
+        </ul>    
+         
+		</div>
+		<span wicket:id="group">
+		<table class="grilla" cellpadding="0" cellspacing="0">
+         	<tr style="height: 20px;">
+            	<th style="width: 20px"><input  type="checkbox" wicket:id="groupselector">&nbsp;</input></th>
+                <th style="width: 10px" >&nbsp;</th>
+                <th ><wicket:message key="attachFileForm.filename">Archivo</wicket:message></th>				
+                <th ><wicket:message key="attachFileForm.date">Fecha</wicket:message></th>                
+            </tr>
+           	<tr wicket:id="pageable">
+				<td><input  type="checkbox" wicket:id="cb"/></td>
+				<td><img src="/Item/images/blank.png"/></td>	
+				<td><span wicket:id="filename">Archivo</span></td>				
+				<td><span wicket:id="creationDate">Fecha</span></td>
+			</tr>
+		</table>	
+	</span>
+	</form>
+</div>
+</wicket:panel>

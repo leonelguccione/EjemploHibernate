@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <!-- a SessionFactory instance -->
+    <session-factory>
+        <!-- Database connection settings for mysql -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost/item3</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">leonel</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="show_sql">true</property>
+        <!-- Database connection settings for oracle -->
+        <!--		<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>-->
+        <!--		<property name="connection.url">jdbc:oracle:thin:@localhost:1521:oracle</property>-->
+        <!--		<property name="connection.username">item3</property>-->
+        <!--		<property name="connection.password">item3</property>-->
+        <!--		<property name="dialect">org.hibernate.dialect.OracleDialect</property>-->
+        <!--		<property name="show_sql">false</property>-->
+        <!-- mapping files -->
+        <!--item/model -->
+        <mapping resource="zinbig/item/model/Tracker.hbm.xml"/>
+        <mapping resource="zinbig/item/model/Operation.hbm.xml"/>
+        <mapping resource="zinbig/item/util/i18n/I18NMessage.hbm.xml"/>
+        <mapping resource="zinbig/item/util/i18n/ItemLocale.hbm.xml"/>
+        <mapping resource="zinbig/item/util/SystemProperty.hbm.xml"/>
+        <mapping resource="zinbig/item/util/ItemStatistic.hbm.xml"/>
+        <mapping resource="zinbig/item/model/projects/Project.hbm.xml"/>
+        <mapping resource="zinbig/item/model/users/AbstractUser.hbm.xml"/>
+        <mapping resource="zinbig/item/model/Item.hbm.xml"/>
+        <mapping resource="zinbig/item/model/ItemFile.hbm.xml"/>
+        <mapping resource="zinbig/item/model/ItemType.hbm.xml"/>
+        <mapping resource="zinbig/item/model/properties/PropertyDescription.hbm.xml"/>
+        <mapping resource="zinbig/item/model/Comment.hbm.xml"/>
+        <mapping resource="zinbig/item/model/projects/Priority.hbm.xml"/>
+        <mapping resource="zinbig/item/model/projects/PrioritySet.hbm.xml"/>
+        <mapping resource="zinbig/item/model/filters/Filter.hbm.xml"/>
+        <mapping resource="zinbig/item/model/workflow/WorkflowNode.hbm.xml"/>
+        <mapping resource="zinbig/item/model/workflow/WorkflowDescription.hbm.xml"/>
+        <mapping resource="zinbig/item/model/workflow/WorkflowLinkDescription.hbm.xml"/>
+        <mapping resource="zinbig/item/model/workflow/WorkflowNodeDescription.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

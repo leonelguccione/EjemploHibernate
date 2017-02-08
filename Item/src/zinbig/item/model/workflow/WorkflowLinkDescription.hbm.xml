@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model.workflow">
+
+	<class name="WorkflowLinkDescription" table="workflow_link_description">
+		<id name="oid" type="string" column="OID_WORKFLOW_LINK_DESCRIPTION">
+
+			<generator class="assigned"></generator>
+		</id>
+		
+		<version column="version_id" name="version" />
+
+		<property name="title" length="50" />
+
+		<many-to-one lazy="proxy" name="initialNodeDescription"
+			column="OID_INITIAL_NODE_DESCRIPTION" 
+			class="zinbig.item.model.workflow.WorkflowNodeDescription" cascade="all" />
+
+		<many-to-one lazy="proxy" name="finalNodeDescription"
+			column="OID_FINAL_NODE_DESCRIPTION" 
+			class="zinbig.item.model.workflow.WorkflowNodeDescription" cascade="all" />
+			
+			<bag name="itemTypes" lazy="extra" cascade="all"
+				table="link_descriptions_item_types">
+				<key column="oid_link_description" not-null="false" />
+				<many-to-many column="oid_item_type" class="zinbig.item.model.ItemType" />
+			</bag>
+	</class>
+
+
+</hibernate-mapping>

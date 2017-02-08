@@ -1,0 +1,59 @@
+<wicket:extend>
+
+<div class="tab" >
+ 	<h2><wicket:message key="editWorkflowNodeDescription.title">Edición de nodo de workflow</wicket:message></h2>
+ 
+ 	<a class="viewAllLink" wicket:id="returnToProjectLink"><wicket:message
+		key="editWorkflowNodeDescription.returnToProject"></wicket:message></a>
+		
+	<form wicket:id="editWorkflowNodeDescriptionForm">
+	<div class="small">
+		<div class="headingRequired">  
+			<div> 
+		    <wicket:message key="addWorkflowNodeDescriptionForm.nodeTitle">Título</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=1 type="text" wicket:id="titleAWNDF" />
+			<img src=""	wicket:id="indicatorImg" style="position:relative; top:3px; left: 10px;display:none;" />
+			<div class="errorC" wicket:id="titleAWNDFFeedback"></div>
+		</div>
+		<div class="heading">  
+				<div>
+				<wicket:message key="addWorkflowNodeDescriptionForm.finalNode">nodo final?</wicket:message>
+				</div>
+				<input type="checkbox" tabindex=8 wicket:id="finalNode" />
+		</div>
+		<div class="heading" style="width: 100%;height: 10px;">
+			
+		</div>
+		<div class="heading">  
+					<wicket:message key="addWorkflowNodeDescriptionForm.users">Usuarios</wicket:message>
+		</div>
+		<div class="heading"> 		
+			<div wicket:id="usersPalette"></div>
+		</div>				
+
+	</div>
+	<div class="heading" style="width: 100%;height: 10px;">
+			
+	</div>
+	<input class="resetButton" type="Reset"/>
+	<a wicket:id="saveLink" class="sendButtonRight"><wicket:message	key="addWorkflowNodeDescriptionForm.save">Enviar</wicket:message></a>
+	</form>	
+
+
+</div>
+</wicket:extend>
+
+	
+			
+			
+			
+	
+			
+			
+			
+	
+
+	
+
+

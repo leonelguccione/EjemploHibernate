@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model">
+
+	
+
+	<class name="Comment" table="comments">
+		<id name="oid" type="string" column="OID_COMMENT" >
+			<generator class="assigned"></generator>
+		</id>
+
+		<property name="comment" column="comment_text" length="2000" />		
+		<property name="creationDate" column="creation_date" />
+		<property name="creatorUsername" column="creator_username"/>
+			
+	</class>
+
+
+
+</hibernate-mapping>

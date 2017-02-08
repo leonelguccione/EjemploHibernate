@@ -1,0 +1,80 @@
+<wicket:panel >
+
+  <!-- Inicio Menu Idioma -->
+    <div class="menuLanguage"  id="menu_parent">
+      <span wicket:id="selectedLanguage" style="position: relative; top: 7px;">Título</span>
+      <img wicket:id="img" alt="" class="selectedLanguageImage" src="/" />
+      <img class="selectLanguageImage" src="/Item/images/arrowDown.gif"/>
+    </div>
+   
+    
+    <div id="menu_child" class="menuChild" >
+	 
+	    <a class="linkLanguage" wicket:id="spanishLink" >
+		<wicket:message key="languageSelectionPanel.spanishLink">Español</wicket:message>
+		<img alt="" class="linkLanguageImage" src="/Item/images/bandera_es.gif"/>
+	    </a>
+	   
+	    <span class="linkLanguage">
+	    &nbsp;
+	    </span>
+	   
+	    <a class="linkLanguage" wicket:id="englishLink">
+		<wicket:message key="languageSelectionPanel.englishLink">English</wicket:message>
+		<img class="linkLanguageImage" alt="" src="/Item/images/bandera_en.gif"/>
+	    </a>
+	       
+    </div> 
+    
+   <!-- Fin Menu idioma --> 
+
+
+   <!-- Inicio Formulario de Login -->
+   <div class="loginForm">
+   <form wicket:id="loginForm">
+   
+   	<div class="formCol">    		
+   		<div class="feedbacklabel_ERROR" wicket:id="usernameLFFeedback"></div>
+        <input name="Id" type="text" wicket:id="usernameLF" />         
+   	</div>
+   	
+    <div class="formCol">    	
+		<div class="feedbacklabel_ERROR2" wicket:id="passwordLFFeedback"></div>
+       	<input name="pw" type="password" wicket:id="passwordLF" />
+        <a class="forgotPass" wicket:id="rememberPasswordLink" href="#">
+    	<wicket:message key="loginForm.rememberPassword">Recordar clave</wicket:message>
+    	</a>        
+   	</div>
+   	
+    <div class="formColBtn">
+    	<input type="submit" wicket:id="submitButton" name="ingresar" class="submitbutton"  />
+    </div>
+    </form>
+    <!-- Fin Formulario de Login -->
+   
+   
+   	<form wicket:id="logoutForm">
+  		<div class="formCol">    
+   			<a class="logoutLink" wicket:id="editUserLink"  >
+				<div wicket:id="userLabel">Usuario</div>		
+			</a> 
+		</div>
+		<div class="formCol"> 
+			&nbsp;
+		</div>
+		<div class="formColBtn">     
+			<input type="submit" wicket:id="exitButton" name="salir" class="submitbutton"  />
+
+    	</div>
+  	 </form>
+   
+   </div>
+  
+
+<script type="text/javascript">
+at_attach("menu_parent", "menu_child", "hover", "y", "pointer");
+</script>	
+</wicket:panel>
+
+
+

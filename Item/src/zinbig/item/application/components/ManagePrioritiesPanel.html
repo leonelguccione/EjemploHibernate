@@ -1,0 +1,65 @@
+<wicket:panel>
+<div class="tab">
+	<form wicket:id="addPriorityForm">
+	<div class="small">
+		<div class="headingRequired">  
+			<div> 
+		    <wicket:message key="addPriorityForm.name">Nombre</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=1 type="text" wicket:id="nameAPF" />
+			<div class="errorC" wicket:id="nameAPFFeedback"></div>
+		</div>	
+		<div class="headingRequired">  
+			<div>
+			<wicket:message key="addPriorityForm.value">Valor</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=2 type="text" wicket:id="valueAPF" />
+			<div class="errorC" wicket:id="valueAPFFeedback"></div>
+		</div>	
+					   
+	</div>
+	<div class="heading" style="width: 100%;height: 10px;">
+			
+	</div>
+	<input class="resetButton" type="Reset"/>
+	<a wicket:id="saveLink" class="sendButtonRight"><wicket:message	key="addPriorityForm.save">Enviar</wicket:message></a>
+	</form>
+	<div class="heading" style="width: 100%;height: 20px;">
+			
+	</div>
+	
+	
+	<div class="warning2" wicket:id="noResultsLabel">
+	</div>
+	<form wicket:id="deletePrioritiesForm">
+	 <div class="errorControlTableTab" wicket:id="feedback">Feedback</div> 
+	
+
+	<div class="controlsTable">
+		<ul class="actionTable">			
+            <li><a class="delete" wicket:id="deletePrioritiesLink"><wicket:message key="listPrioritiesPanel.deletePriorities">Eliminar prioridades</wicket:message></a></li>            
+        </ul>    
+         
+	</div>
+	<span wicket:id="group">
+	<table class="grilla"  cellpadding="0" cellspacing="0">
+         	<tr style="height: 20px;">
+            	<th style="width: 20px;"><input type="checkbox" wicket:id="groupselector">&nbsp;</input></th>
+                <th style="width: 10px;" >&nbsp;</th>
+                <th ><a wicket:id="sortByNameLink"><wicket:message key="listPrioritiesPanel.name">Nombre</wicket:message></a></th>				
+                <th ><wicket:message key="listPrioritiesPanel.value">Valor</wicket:message></th>
+                <th ><wicket:message key="listPrioritiesPanel.referencesCount">Referencias</wicket:message></th>
+            </tr>
+           	<tr wicket:id="pageable">
+				<td><input style="display:block!important;"  type="checkbox" wicket:id="cb"/></td>
+				<td><img src="/Item/images/blank.png" alt="No se borra"/></td>	
+				<td><span wicket:id="name">Nombre</span></td>
+				<td><span wicket:id="value">Valor</span></td>
+				<td><span wicket:id="referencesCount">Referencias</span></td>
+			</tr>
+	</table>	
+	</span>
+
+</form>	
+</div>
+</wicket:panel>

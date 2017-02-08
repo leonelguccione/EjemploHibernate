@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model.users">
+	<class name="AbstractUser" optimistic-lock="version" table="abstract_user"
+		abstract="true" >
+		<id name="oid" type="string" column="OID_USER" >
+			<generator class="assigned"></generator>
+		</id>
+
+		<version column="version_id" name="version" />
+
+		
+		<property name="name" length="50" />		
+		<property name="alias" length="50" />
+		<property name="deletable" column="is_deletable" />
+		<property name="email" length="50" />
+		<property name="creationDate" column="creation_date" />
+		<property name="language" length="2" />
+		
+	
+
+		<union-subclass name="User" table="item_user" >
+
+			<property name="password" length="50" />
+			<property name="username" length="50" />
+			<property name="status" length="3" />
+			
+			<property name="surname" length="50" />
+  
+			<bag name="userGroups" lazy="extra" cascade="all"
+				table="user_group_item_user" inverse="true">
+				<key column="oid_user" not-null="false" />
+				<many-to-many column="oid_user_group"
+					class="zinbig.item.model.users.UserGroup" />
+			</bag>
+
+			<map name="userPreferences" table="user_preferences" fetch="join" lazy="extra">
+				<key column="oid_user" />
+				<index column="USER_PREFERENCE_KEY" type="string" />
+				<element column="USER_PREFERENCE_VALUE" type="string" />
+			</map>
+			
+			<bag name="filters" lazy="extra" cascade="all">
+			<key column="oid_user" not-null="false" />
+			<one-to-many class="zinbig.item.model.filters.Filter" />
+		</bag>
+		
+
+		</union-subclass>
+
+		<union-subclass name="UserGroup" table="user_group">
+
+			<bag name="operations" lazy="extra" cascade="all"
+				table="user_group_operations">
+				<key column="oid_user_group" not-null="false" />
+				<many-to-many column="oid_operation" class="zinbig.item.model.Operation" />
+			</bag>
+ 
+			<bag name="users"  lazy="extra" cascade="all" table="user_group_item_user">
+				<key column="oid_user_group" not-null="false" />
+				<many-to-many column="oid_user" class="zinbig.item.model.users.User" />
+			</bag>
+	 
+			<bag name="projects" lazy="extra" table="user_group_project"
+				cascade="all" inverse="true">
+				<key column="oid_user_group" not-null="false" />
+				<many-to-many column="oid_project"
+					class="zinbig.item.model.projects.Project" />
+			</bag>
+
+		</union-subclass>
+
+	</class>
+
+
+</hibernate-mapping>

@@ -1,6 +1,5 @@
 package de.laliluna.example;
 
-import de.laliluna.hibernate.HibernateUtil;
 import de.laliluna.hibernate.InitSessionFactory;
 
 import java.util.Iterator;
@@ -25,11 +24,11 @@ public class TestExample
 
         //Session session = InitSessionFactory.getInstance().openSession();
         //Session session = InitSessionFactory.openSession();
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = InitSessionFactory.getInstance().getCurrentSession();
         Transaction tx = session.beginTransaction();
         session.save(forestHoney);
         tx.commit();
-        session.close();
+        //session.close();
         return forestHoney;
     }
 
@@ -37,35 +36,35 @@ public class TestExample
     private static void update()
     {
         Honey honey = createHoney();
-        Session session = InitSessionFactory.getInstance().openSession();
+        Session session = InitSessionFactory.getInstance().getCurrentSession();
         Transaction tx = session.beginTransaction();
         honey.setName("Modern style");
         session.update(honey);
         tx.commit();
-        session.close();
+        //session.close();
     }
 
     //The method delete creates an object and deletes it by calling session.delete.
     private static void delete()
     {
         Honey honey = createHoney();
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = InitSessionFactory.getInstance().getCurrentSession();
         Transaction tx = session.beginTransaction();
         session.delete(honey);
         tx.commit();
-        session.close();
+        //session.close();
     }
 
     // The tables are emptied with the method clean.
     // The method session.createQuery creates a new query and runs it by calling executeUpdate.
     private static void clean()
     {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = InitSessionFactory.getInstance().getCurrentSession();
         Transaction tx = session.beginTransaction();
         session.createQuery("delete from Bee").executeUpdate();
         session.createQuery("delete from Honey").executeUpdate();
         tx.commit();
-        session.close();
+        //session.close();
     }
 
     //The method createRelation shows, how to create objects and set an association between these objects.
@@ -91,7 +90,7 @@ public class TestExample
     //The call to session.createQuery creates the query and list() runs the query and returns a list of Honey objects.
     private static void query()
     {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = InitSessionFactory.getInstance().getCurrentSession();
         Transaction tx = session.beginTransaction();
         List honeys = session.createQuery("select h from Honey as h").list();
         for (Iterator iter = honeys.iterator(); iter.hasNext();)
@@ -100,18 +99,18 @@ public class TestExample
             log.debug(element);
         }
         tx.commit();
-        session.close();
+//        session.close();
     }
 
     public static void main(String[] args)
-    {
-        /* clean tables */
+    {        
         try
         {
+            /* clean tables */
             //clean();
 
             /* simple create example */
-            //createHoney();
+            createHoney();
 
             /* relation example */
             createRelation();
@@ -123,7 +122,7 @@ public class TestExample
             //update();
 
             /* query example */
-            //query();
+            query();
         }
         catch (RuntimeException e)
         {

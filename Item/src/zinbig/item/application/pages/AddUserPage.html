@@ -1,0 +1,76 @@
+
+<wicket:extend>
+ 
+ <div class="tab" >
+ 
+ <h2><wicket:message key="addUserForm.title">Alta de usuario</wicket:message></h2>
+
+	<a class="viewAllLink" wicket:id="viewAllLink"><wicket:message
+		key="addUserPage.viewAll"></wicket:message></a>
+	
+	
+			<form wicket:id="addUserForm" >
+			<div class="small">
+				<div class="headingRequired">  
+					<div>  
+					<wicket:message key="addUserForm.name">Nombre</wicket:message>&nbsp;<div class="requiredField">*</div>
+					</div>						
+					<input tabindex=1 type="text" wicket:id="nameAUF" />
+					<div class="errorC" wicket:id="nameAUFFeedback"></div>	
+				</div> 
+				<div class="headingRequired">   
+					<div>  
+					<wicket:message key="addUserForm.surname">Apellido</wicket:message>&nbsp;<div class="requiredField">*</div>
+					</div>
+					<input tabindex=2 type="text" wicket:id="surnameAUF" /> 
+					<div class="errorC" wicket:id="surnameAUFFeedback"></div>
+				</div> 
+				<div class="headingRequired" >  
+					<div> 				
+					<wicket:message key="addUserForm.username">Username</wicket:message>&nbsp;<div class="requiredField">*</div>
+					</div>					 
+					<input  tabindex=3 type="text" wicket:id="usernameAUF" />
+					<img src=""	wicket:id="indicatorImg" style="position:relative; top:3px; left: 10px;display:none;" />
+					<div class="errorC" wicket:id="usernameAUFFeedback">algo</div>
+				</div>
+				<div class="headingRequired"> 
+					<div>  	
+					<wicket:message key="addUserForm.email">Email</wicket:message>&nbsp;<div class="requiredField">*</div>				
+					</div>
+					<input tabindex=4 type="text" wicket:id="emailAUF" /> 
+					<div class="errorC" wicket:id="emailAUFFeedback"></div>
+				</div>
+				<div class="headingRequired">  
+					<div> 	
+					<wicket:message key="addUserForm.password">Clave</wicket:message>&nbsp;<div class="requiredField">*</div>				
+				 	</div>
+					<input tabindex=5 type="password" wicket:id="passwordAUF" /> 
+					<div class="errorC" wicket:id="passwordAUFFeedback"></div>
+				</div>
+				<div class="headingRequired">  	
+					<div> 
+					<wicket:message key="addUserForm.passwordConfirmation">Confirmación de clave</wicket:message>&nbsp;<div class="requiredField">*</div>
+					</div>
+					<input tabindex=6 type="password" wicket:id="passwordConfirmationAUF" /> 
+					<div class="errorC" wicket:id="passwordConfirmationAUFFeedback"></div>
+				</div>
+				<div class="heading">  
+					<wicket:message key="addUserForm.groups">Grupos</wicket:message>
+				</div>
+				<div class="heading"> 		
+				<div wicket:id="usergroupsPalette"></div>
+				</div>			
+			</div>
+			<div class="heading" style="width: 100%;height: 10px;">
+			
+			</div>
+			<a wicket:id="cancelLink" class="button"><wicket:message key="addUserForm.cancel">Cancelar</wicket:message></a>
+			&nbsp;
+			<a wicket:id="submitLink" class="sendButtonRight"><wicket:message key="addUserForm.send">Enviar</wicket:message></a>
+
+			</form>
+	
+</div>
+
+</wicket:extend>
+

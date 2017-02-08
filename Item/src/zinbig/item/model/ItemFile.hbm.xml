@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model">
+
+	<class name="ItemFile" table="item_file">
+		<id name="oid" type="string" column="OID_ITEM_FILE">
+			<generator class="assigned"></generator>
+		</id>
+
+		<property name="filename" length="2000" />
+
+		<property name="creationDate" column="creation_date" />
+
+	</class>
+
+</hibernate-mapping>

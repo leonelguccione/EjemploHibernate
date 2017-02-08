@@ -1,0 +1,48 @@
+<wicket:extend>
+
+ <div class="tab" >
+ 	<h2><wicket:message key="editUserGroupForm.title">Edición de grupo de usuarios</wicket:message></h2>
+ 
+ 	<a class="viewAllLink" wicket:id="viewAllLink"><wicket:message
+		key="editUserGroupPage.viewAll"></wicket:message></a>
+	<form wicket:id="editUserGroupForm">	
+	<div class="small">
+		<div class="headingRequired">  
+			<div> 
+			<wicket:message key="editUserGroupForm.name">Nombre</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=1 type="text" wicket:id="nameEUGF" /> 
+			<img src="" wicket:id="indicatorImg" style="display: none" />
+			<div class="errorC" wicket:id="nameEUGFFeedback"></div>
+		</div>
+		<div class="heading">  
+			<div> 
+			<wicket:message key="editUserGroupForm.email">Email</wicket:message>
+			</div>
+			<input tabindex=2 type="text" wicket:id="emailEUGF" /> 
+			<div class="errorC" wicket:id="emailEUGFFeedback"></div>
+		</div>	
+		<div class="heading"> 
+			<div wicket:id="operationsLabel">Operaciones</div>
+		</div>
+		<div class="heading"> 
+			<div wicket:id="operationsPalette">	</div>	
+		</div>
+		<div class="heading"> 
+			<div wicket:id="projectsLabel">Proyectos</div>
+		</div>
+		<div class="heading"> 
+			<div wicket:id="projectsPalette"></div>		
+		</div>
+	</div>
+	<div class="heading" style="width: 100%;height: 10px;">
+			
+	</div>
+	<a wicket:id="cancelLink" class="button"><wicket:message key="editUserGroupForm.cancel">Cancel</wicket:message></a>
+	&nbsp;		
+	<a wicket:id="saveLink" class="sendButtonRight"><wicket:message key="editUserGroupForm.send">Send</wicket:message></a>
+	</form>	
+ 
+ </div>
+</wicket:extend>
+

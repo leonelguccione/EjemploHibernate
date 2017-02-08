@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model">
+	
+	<class name="ItemType" table="item_type">
+		<id name="oid" type="string" column="OID_ITEM_TYPE" >
+			<generator class="assigned"></generator>
+		</id>
+
+		<version column="version_id" name="version" />
+		
+		<property name="title" length="100" />
+		<property name="referencesCount" column="references_count"  />
+		
+	</class>
+
+
+
+</hibernate-mapping>

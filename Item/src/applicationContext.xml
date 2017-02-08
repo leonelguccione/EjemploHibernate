@@ -1,0 +1,1454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!-- Objeto que representa la consulta para recuperar mensajes i18n -->
+	<bean id="i18nMessagesQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select m from zinbig.item.util.i18n.I18NMessage m</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar las localidades
+		soportadas
+	-->
+	<bean id="itemLocalesQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select l from zinbig.item.util.i18n.ItemLocale l</value>
+		</property>
+	</bean>
+
+	<!-- Objeto que representa a la aplicación wicket -->
+	<bean id="wicketApplication" class="zinbig.item.application.ItemApplication">
+		<property name="itemAssignmentStrategies">
+			<list>
+				<value>zinbig.item.model.projects.CreatorAssignmentStrategy</value>
+				<value>zinbig.item.model.projects.ProjectLeaderAssignmentStrategy</value>
+				<value>zinbig.item.model.projects.UserSelectedAssignmentStrategy</value>
+
+			</list>
+			
+		</property>
+		
+
+	</bean>
+
+
+
+	<!-- Objeto utilizado para enviar emails a los usuarios -->
+	<bean id="emailSenderStrategy" class="zinbig.item.util.email.SMTPSEmailSenderStrategy">
+		<property name="smtpHostName">
+			<value>smtp.gmail.com</value>
+		</property>
+		<property name="smtpHostPort">
+			<value>465</value>
+		</property>
+		<property name="smtpAuthUser">
+			<value>javier.bazzocco@gmail.com</value>
+		</property>
+		<property name="smtpAuthPwd">
+			<value></value>
+		</property>
+	</bean>
+
+
+
+	<!--
+		Objeto utilizado para encriptar las claves <bean
+		id="encryptionStrategy"
+		class="zinbig.item.util.security.ItemSymetricEncryptionStrategy">
+		</bean>
+	-->
+	<bean id="encryptionStrategy" class="zinbig.item.util.security.SHA64EncryptionStrategy">
+	</bean>
+
+
+
+	<!-- Objeto utilizado para configurar hibernate -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>/WEB-INF/classes/jdbc.properties</value>
+		</property>
+	</bean>
+
+	<!-- Datos para la conexión de hibernate -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>${jdbc.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+	</bean>
+
+	<bean id="c3p0Datasource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>${jdbc.driverClassName}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="user">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+	</bean>
+
+	<!-- SessionFactory de hibernate -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<!--			<ref local="dataSource" />-->
+			<ref local="c3p0Datasource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>zinbig/item/model/users/AbstractUser.hbm.xml</value>
+				<value>zinbig/item/model/Tracker.hbm.xml</value>
+				<value>zinbig/item/model/Operation.hbm.xml</value>
+				<value>zinbig/item/model/projects/Project.hbm.xml</value>
+				<value>zinbig/item/model/Item.hbm.xml</value>
+				<value>zinbig/item/model/ItemFile.hbm.xml</value>
+				<value>zinbig/item/model/ItemType.hbm.xml</value>
+				<value>zinbig/item/model/properties/PropertyDescription.hbm.xml</value>
+				<value>zinbig/item/model/Comment.hbm.xml</value>
+				<value>zinbig/item/model/projects/Priority.hbm.xml</value>
+				<value>zinbig/item/model/projects/PrioritySet.hbm.xml</value>
+				<value>zinbig/item/util/i18n/I18NMessage.hbm.xml</value>
+				<value>zinbig/item/util/i18n/ItemLocale.hbm.xml</value>
+				<value>zinbig/item/util/SystemProperty.hbm.xml</value>
+				<value>zinbig/item/util/ItemStatistic.hbm.xml</value>
+				<value>zinbig/item/model/workflow/WorkflowNode.hbm.xml</value>
+				<value>zinbig/item/model/filters/Filter.hbm.xml</value>
+				<value>zinbig/item/model/workflow/WorkflowDescription.hbm.xml</value>
+				<value>zinbig/item/model/workflow/WorkflowNodeDescription.hbm.xml</value>
+				<value>zinbig/item/model/workflow/WorkflowLinkDescription.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.c3p0.idle_test_period">28680</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>
+				<prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop>
+
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+				
+			</props>
+		</property>
+	</bean>
+
+
+
+
+
+
+	<!-- Objeto utilizado para administrar las transacciones -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--
+		Objeto utilizado para acceder a los mensajes internacionalizados
+	-->
+	<bean id="itemStringResourceLoader" class="zinbig.item.util.i18n.ItemStringResourceLoader"
+		singleton="true">
+		<constructor-arg>
+			<ref bean="sessionFactory" />
+		</constructor-arg>
+		<constructor-arg>
+			<ref local="i18nMessagesQuery" />
+		</constructor-arg>
+		<constructor-arg>
+			<ref local="itemLocalesQuery" />
+		</constructor-arg>
+		<constructor-arg>
+			<ref local="wicketApplication" />
+		</constructor-arg>
+
+	</bean>
+
+	<!-- Objeto utilizado para acceder al contexto de la aplicación -->
+	<bean id="contextApplicationContextProvider" class="zinbig.item.util.spring.ItemApplicationContextProvider"></bean>
+
+
+
+
+	<!--
+		Objeto utilizado para acceder en forma eficiente a las instancias de
+		la clase Tracker
+	-->
+	<bean id="trackerRepository"
+		class="zinbig.item.repositories.impl.hibernate.HibernateTrackerRepository">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--
+		Objeto utilizado para acceder en forma eficiente a las instancias de
+		la clase User
+
+
+	<bean id="usersRepository"
+		class="zinbig.item.repositories.impl.hibernate.HibernateUsersRepository">
+		<property name="sessionFactory">
+
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+-->	
+	<!--  
+		Objeto utilizado para acceder en forma eficiente a las instancias de
+		la clase User	 
+	-->	
+		<bean id="usersRepository"
+		class="zinbig.item.repositories.impl.mock.MockUsersRepository">
+
+		</bean>
+	
+
+	<!--
+		Objeto utilizado para acceder en forma eficiente a las instancias de
+		la clase Operation
+	-->
+	<bean id="operationsRepository"
+		class="zinbig.item.repositories.impl.hibernate.HibernateOperationsRepository">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!--
+		Objeto utilizado para acceder en forma eficiente a las instancias de
+		la clase Workflow y sus clases asociadas.
+	-->
+	<bean id="workflowsRepository"
+		class="zinbig.item.repositories.impl.hibernate.HibernateWorkflowsRepository">
+		<property name="sessionFactory">
+
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--
+		Objeto utilizado para acceder en forma eficiente a las instancias de
+		la clase Project
+	-->
+	<bean id="projectsRepository"
+		class="zinbig.item.repositories.impl.hibernate.HibernateProjectsRepository">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--
+		Objeto utilizado para acceder en forma eficiente a las instancias de
+		la clase Item.
+	-->
+	<bean id="itemsRepository"
+		class="zinbig.item.repositories.impl.hibernate.HibernateItemsRepository">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--
+		Objeto utilizado para generar los strings de los filtros de ítems
+	-->
+	<bean id="filterStringCreationStrategy"
+		class="zinbig.item.model.filters.HibernateFilterStringCreationStrategy">
+
+	</bean>
+
+	<!--
+		Objeto utilizado para acceder en forma eficiente a las instancias de
+		la clase Priority y PrioritySet.s
+	-->
+	<bean id="prioritiesRepository"
+		class="zinbig.item.repositories.impl.hibernate.HibernatePrioritiesRepository">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Objeto utilizado para acceder a los diferentes repositorios -->
+	<bean id="repositoryLocator" class="zinbig.item.repositories.RepositoryLocator"
+		factory-method="getInstance">
+		<property name="usersRepository">
+			<ref local="usersRepository" />
+		</property>
+		<property name="projectsRepository">
+			<ref local="projectsRepository" />
+		</property>
+		<property name="prioritiesRepository">
+			<ref local="prioritiesRepository" />
+		</property>
+		<property name="operationsRepository">
+			<ref local="operationsRepository" />
+		</property>
+		<property name="workflowsRepository">
+			<ref local="workflowsRepository" />
+		</property>
+		<property name="itemsRepository">
+			<ref local="itemsRepository" />
+		</property>
+		<property name="trackerRepository">
+			<ref local="trackerRepository" />
+		</property>
+	</bean>
+
+	<!--
+		Objeto utilizado para crear los diferentes DTOs requeridos por la
+		aplicación
+	-->
+	<bean id="dtoFactory" class="zinbig.item.util.dto.DTOFactory"
+		factory-method="getInstance">
+		<property name="encryptionStrategy">
+			<ref local="encryptionStrategy" />
+		</property>
+	</bean>
+
+	<!-- Clase abstracta de todos los servicios del sistema -->
+	<bean id="baseServiceImpl" class="zinbig.item.services.impl.BaseServiceImpl"
+		abstract="true">
+		<property name="trackerRepository">
+			<ref local="trackerRepository" />
+		</property>
+		<property name="usersRepository">
+			<ref local="usersRepository" />
+		</property>
+		<property name="operationsRepository">
+			<ref local="operationsRepository" />
+		</property>
+		<property name="projectsRepository">
+			<ref local="projectsRepository" />
+		</property>
+		<property name="prioritiesRepository">
+			<ref local="prioritiesRepository" />
+		</property>
+		<property name="workflowsRepository">
+			<ref local="workflowsRepository" />
+		</property>
+		<property name="itemsRepository">
+			<ref local="itemsRepository" />
+		</property>
+		<property name="dtoFactory">
+			<ref local="dtoFactory" />
+		</property>
+	</bean>
+
+	<!--
+		Objeto que implementa la definición de los servicios para usuarios
+	-->
+	<bean id="usersServiceTarget" class="zinbig.item.services.impl.UsersServiceImpl"
+		parent="baseServiceImpl">
+		<property name="encryptionStrategy">
+			<ref local="encryptionStrategy" />
+		</property>
+	</bean>
+
+	<!-- Proxy trasaccional para los servicios de usuarios -->
+	<bean id="usersService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref local="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="usersServiceTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+		<property name="preInterceptors">
+			<list>
+				<bean class="zinbig.item.util.spring.ServiceExceptionInterceptor" />
+			</list>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que implementa la definición de los servicios para proyectos
+	-->
+	<bean id="projectsServiceTarget" class="zinbig.item.services.impl.ProjectsServiceImpl"
+		parent="baseServiceImpl">
+		<property name="additionalPropertyTypes">
+			<map>
+				<entry>
+					<key><value>SIMPLE</value></key>
+					<value>zinbig.item.model.properties.SimplePropertyDescription</value>
+				</entry>	
+				<entry>
+					<key><value>TEXTAREA</value></key>
+					<value>zinbig.item.model.properties.TextAreaPropertyDescription</value>
+				</entry>	
+				<entry>
+					<key><value>FIXED</value></key>
+					<value>zinbig.item.model.properties.FixedValuesListPropertyDescription</value>
+				</entry>	
+				<entry>
+					<key><value>DYNAMIC</value></key>
+					<value>zinbig.item.model.properties.DynamicValuesListPropertyDescription</value>
+				</entry>				
+			</map>	
+		</property>
+
+	</bean>
+
+	<!-- Proxy trasaccional para los servicios de proyectos -->
+	<bean id="projectsService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref local="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="projectsServiceTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+		<property name="preInterceptors">
+			<list>
+				<bean class="zinbig.item.util.spring.ServiceExceptionInterceptor" />
+			</list>
+		</property>
+		
+	</bean>
+
+	<!--
+		Objeto que implementa la definición de los servicios para prioridades
+	-->
+	<bean id="prioritiesServiceTarget" class="zinbig.item.services.impl.PrioritiesServiceImpl"
+		parent="baseServiceImpl">
+
+	</bean>
+
+	<!-- Proxy trasaccional para los servicios de prioridades -->
+	<bean id="prioritiesService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref local="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="prioritiesServiceTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+		<property name="preInterceptors">
+			<list>
+				<bean class="zinbig.item.util.spring.ServiceExceptionInterceptor" />
+			</list>
+		</property>
+	</bean>
+
+
+	<!--
+		Objeto que implementa la definición de los servicios para ítems
+	-->
+	<bean id="itemsServiceTarget" class="zinbig.item.services.impl.ItemsServiceImpl"
+		parent="baseServiceImpl">
+		<property name="filterStringCreationStrategy">
+			<ref local="filterStringCreationStrategy" />
+		</property>
+	</bean>
+
+	<!-- Proxy trasaccional para los servicios de ítems -->
+	<bean id="itemsService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref local="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="itemsServiceTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+		<property name="preInterceptors">
+			<list>
+				<bean class="zinbig.item.util.spring.ServiceExceptionInterceptor" />
+			</list>
+		</property>
+
+	</bean>
+
+	<!--
+		Objeto que implementa la definición de los servicios para workflows.
+	-->
+	<bean id="workflowsServiceTarget" class="zinbig.item.services.impl.WorkflowsServiceImpl"
+		parent="baseServiceImpl">
+	</bean>
+
+	<!-- Proxy trasaccional para los servicios de workflows -->
+	<bean id="workflowsService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref local="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="workflowsServiceTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+		<property name="preInterceptors">
+			<list>
+				<bean class="zinbig.item.util.spring.ServiceExceptionInterceptor" />
+			</list>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que implementa la definición de los servicios para emails.
+	-->
+	<bean id="emailService" class="zinbig.item.services.impl.EmailServiceImpl"
+		parent="baseServiceImpl">
+		<property name="emailSenderStrategy">
+			<ref local="emailSenderStrategy" />
+		</property>		
+		<property name="itemStringResourceLoader">
+			<ref local="itemStringResourceLoader" />
+		</property>
+		<property name="application">
+			<ref local="wicketApplication" />
+		</property>
+	</bean>
+
+
+	<!-- Objeto utilizado para acceder a los diferentes servicios -->
+	<bean id="serviceLocator" class="zinbig.item.services.ServiceLocator"
+		factory-method="getInstance">
+		<property name="usersService">
+			<ref local="usersService" />
+		</property>
+		<property name="projectsService">
+			<ref local="projectsService" />
+		</property>
+		<property name="itemsService">
+			<ref local="itemsService" />
+		</property>
+		<property name="prioritiesService">
+			<ref local="prioritiesService" />
+		</property>
+		<property name="workflowsService">
+			<ref local="workflowsService" />
+		</property>
+		<property name="emailService">
+			<ref local="emailService" />
+		</property>
+	</bean>
+
+	<!--
+		En esta sección se escriben todas las consultas de hql que se utilizan
+		en la aplicación
+	-->
+
+
+	<!--
+		Objeto que representa la consulta para recuperar las propiedades del
+		sistema
+	-->
+	<bean id="systemPropertiesQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select sp from zinbig.item.util.SystemProperty sp</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar a un usuario por su
+		username.
+	-->
+	<bean id="userByUsernameQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select u from zinbig.item.model.users.User u where
+				u.username=:anUsername and u.status=:anStatus</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar los filtros favoritos
+		de un usuario.
+	-->
+	<bean id="favoritesFiltersOfUserQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select f from zinbig.item.model.users.User u join u.filters f
+				where
+				u.username=:anUsername and f.favorite=true</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar los filtros 
+		de un usuario.
+	-->
+	<bean id="filtersOfUserQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select f from zinbig.item.model.users.User u join u.filters f
+				where
+				u.username=:anUsername</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los usuarios de
+		un proyecto dado.
+	-->
+	<bean id="allUsersOfProjectQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select u from zinbig.item.model.projects.Project p
+				join
+				p.userGroups ug join ug.users u
+				where p.oid=:anOid</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los usuarios de
+		un proyecto dado.
+	-->
+	<bean id="allPropertyDescriptionsOfProjectQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select ap from zinbig.item.model.projects.Project p
+				join
+				p.itemProperties ap
+				where p.oid=:anOid order by ap.name asc</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los grupos de
+		usuarios de un proyecto dado.
+	-->
+	<bean id="allUserGroupsOfProjectQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select ug from zinbig.item.model.projects.Project p
+				join
+				p.userGroups ug where p.oid=:anOid</value>
+		</property>
+	</bean>
+
+
+
+	<!--
+		Objeto que representa la consulta para recuperar a una prioridad por
+		su oid.
+	-->
+	<bean id="priorityByIdQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p from zinbig.item.model.projects.Priority p where
+				p.oid=:anOid</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar a una prioridad por
+		su oid.
+	-->
+	<bean id="propertyDescriptionByIdQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p from zinbig.item.model.properties.PropertyDescription p where
+				p.oid=:anOid</value>
+		</property>
+	</bean>
+
+
+	<!--
+		Objeto que representa la consulta para recuperar a un proyecto por su
+		nombre.
+	-->
+	<bean id="projectByNameQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p from zinbig.item.model.projects.Project p where
+				p.name=:aName</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar un tipo de ítem por su id.
+	-->
+	<bean id="itemTypeByIdQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select it from zinbig.item.model.ItemType it where
+				it.oid=:anId</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar un tipo de ítem por su título.
+	-->
+	<bean id="itemTypeByTitleQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select it from zinbig.item.model.Tracker t join t.itemTypes it where
+				it.title=:aTitle</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar un tipo de ítem por su título
+		 pero que pertenece a un proyecto dado.
+	-->
+	<bean id="itemTypeByTitleInProjectQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select it from zinbig.item.model.projects.Project p join p.itemTypes it where
+				p.oid=:anOid and it.title=:aTitle</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar los tipos de ítems de un proyecto
+	-->
+	<bean id="itemTypesOfProjectQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p.itemTypes from zinbig.item.model.projects.Project p  where
+				p.oid=:anId</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar los adjuntos de un ítem
+	-->
+	<bean id="itemFilesOfItemQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select i.files from zinbig.item.model.Item i  where
+				i.oid=:anId</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar a un grupo de
+		prioridades por su nombre.
+	-->
+	<bean id="prioritySetByNameQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p from zinbig.item.model.projects.PrioritySet p where
+				p.name=:aName</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar al grupo de
+		prioridades por defecto.
+	-->
+	<bean id="defaultPrioritySetQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p from zinbig.item.model.projects.PrioritySet p where
+				p.defaultPrioritySet=true</value>
+		</property>
+	</bean>
+
+
+
+
+	<!--
+		Objeto que representa la consulta para recuperar al objeto que
+		representa al sistema.
+	-->
+	<bean id="trackerQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select t from zinbig.item.model.Tracker t</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todas las operaciones
+		anónimas.
+	-->
+	<bean id="anonymousOperationsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select op from zinbig.item.model.Operation op
+				where
+				op.executableByAnonymousUser= true</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los proyectos
+		públicos.
+	-->
+	<bean id="publicProjectsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p from zinbig.item.model.projects.Project p
+				where
+				p.publicProject = true</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los proyectos
+		públicos.
+	-->
+	<bean id="orderedPublicProjectsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p from zinbig.item.model.projects.Project p 
+				where
+				p.publicProject = true order by p.items.size desc</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todas las operaciones
+		de sistema de un usuario.
+	-->
+	<bean id="allOperationsOfUserQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select distinct op from zinbig.item.model.users.User u
+				join
+				u.userGroups ug join ug.operations op
+				where u.id=:anOid</value>
+		</property>
+	</bean>
+
+
+
+	<!--
+		Objeto que representa la consulta para recuperar un grupo con un
+		nombre dado del tracker.
+	-->
+	<bean id="usergroupByNameQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select ug from zinbig.item.model.users.UserGroup ug
+				where
+				ug.name=:aName 
+			</value>
+		</property>
+	</bean>
+
+
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los proyectos
+		de un usuario.
+	-->
+	<bean id="projectsOfUserQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select distinct p from zinbig.item.model.users.User
+				u
+				join
+				u.userGroups uip join uip.projects p
+				where
+				u.username=:anUsername</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los proyectos
+		de un usuario.
+	-->
+	<bean id="allProjectsOfUserQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>
+			select distinct p from zinbig.item.model.projects.Project p
+			where p.publicProject=true or p in (select distinct proj from zinbig.item.model.users.User
+				u
+				join
+				u.userGroups uip join uip.projects proj
+				where
+				u.username=:anUsername)			
+			</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los proyectos
+		favoritos de un usuario.
+	-->
+	<bean id="favoriteProjectsOfUserQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>SELECT pref FROM zinbig.item.model.users.User u join
+				u.userPreferences pref where u.username=:anUsername and
+				index(pref)='FAVORITE_PROJECT' </value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los grupos de
+		usuarios.
+	-->
+	<bean id="allUsergroupsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select ug from zinbig.item.model.users.UserGroup ug </value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar la cantidad de grupos
+		de usuario.
+	-->
+	<bean id="usergroupsCountQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select count(ug) from zinbig.item.model.users.UserGroup ug</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar si un usuario es observador 
+		de un ítem o no.
+	-->
+	<bean id="userObserverOfItem" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select count(item) from zinbig.item.model.Item item join item.observers ob
+			where item.oid=:anItemOID and ob.oid=:anUserOID</value>
+		</property>
+	</bean>
+	
+
+	<!--
+		Objeto que representa la consulta para recuperar los grupos de
+		usuarios asignados a un usuario en particular .
+	-->
+
+	<bean id="userGroupsOfUserQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>
+				select u.userGroups from zinbig.item.model.users.User u
+				where
+				u.oid=:anId 
+			</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar los usuarios observadores
+		de un ítem dado.
+	-->
+	<bean id="observersOfItemQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>
+				select i.observers from zinbig.item.model.Item i
+				where
+				i.oid=:anOid 
+			</value>
+		</property>
+	</bean>
+
+
+	<!--
+		Objeto que representa la consulta para recuperar las prioridades
+		pertenecientes a un conjunto de prioridades.
+	-->
+	<bean id="prioritiesOfPrioritySetQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p from zinbig.item.model.projects.PrioritySet ps
+				join
+				ps.priorities p where ps.oid=:anId</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar las propiedades de un proyecto.
+	-->
+	<bean id="propertiesOfProjectQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select ip from zinbig.item.model.projects.Project p
+				join p.itemProperties ip where p.oid=:anId</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar una descripción de 
+		nodo de una descripción de workflow.
+	-->
+	<bean id="nodeDescriptionOfWorkflowNodeDescriptionQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select n from zinbig.item.model.workflow.WorkflowDescription wd
+				join wd.workflowNodeDescriptions n where wd.oid=:anId and n.nodeTitle=:aTitle</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar una descripción de 
+		enlace de una descripción de workflow.
+	-->
+	<bean id="linkDescriptionOfWorkflowNodeDescriptionQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select n from zinbig.item.model.workflow.WorkflowDescription wd
+				join wd.workflowLinkDescriptions n where wd.oid=:anId and n.title=:aTitle</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los ítems.
+		Estos ítems después serán filtrados en base al filtro seleccionado por
+		el usuario.
+	-->
+	<bean id="allItemsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select i from zinbig.item.model.Item i </value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar la cantidad de ítems.
+		Estos ítems después serán filtrados en base al filtro seleccionado por
+		el usuario.
+	-->
+	<bean id="allItemsCountQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select count(i) from zinbig.item.model.Item i </value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar un filtro por id.
+	-->
+	<bean id="filterByIdQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select f from zinbig.item.model.filters.Filter f where
+				f.oid =:anOid</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar un filtro por su
+		nombre.
+	-->
+	<bean id="filterByNameQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select f from zinbig.item.model.users.User u join u.filters f
+				where
+				u.oid =:anOid and f.name =:aName</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar una descripción de propiedad
+		por su nombre.
+	-->
+	<bean id="propertyDescriptionByNameQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select ip from zinbig.item.model.projects.Project p join p.itemProperties ip
+				where
+				p.oid =:anOid and ip.name =:aName</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar la cantidad de
+		usuarios.
+	-->
+	<bean id="usersCountQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select count(u) from zinbig.item.model.users.User u</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar la cantidad de
+		proyectos
+	-->
+	<bean id="projectsCountQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select count(p) from zinbig.item.model.projects.Project p</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar la cantidad de
+		proyectos
+	-->
+	<bean id="additionalPropertiesCountQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select count(i) from zinbig.item.model.projects.Project p
+			join p.itemProperties i where p.oid =:anOid </value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar la cantidad de
+		conjuntos de prioridades
+	-->
+	<bean id="prioritySetsCountQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select count(p) from zinbig.item.model.projects.PrioritySet p</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar la cantidad de ítems
+		públicos.
+	-->
+	<bean id="publicItemsCountQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select count(i) from zinbig.item.model.Item i
+				where i.project.publicProject=true</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar la cantidad de ítems
+		públicos.
+	-->
+	<bean id="itemsOfUserCountQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select count(i) from zinbig.item.model.Item i
+				where i.project.publicProject=true or i.project.oid in (:aList)</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todas las operaciones
+		del sistema. El parametro aName establece si se deben listar las
+		operaciones administrativas.
+	-->
+	<bean id="allOperationsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select op from zinbig.item.model.Operation op
+				where
+				op.administrativeOperation = :aBoolean order by categoryName ASC, name ASC </value>
+		</property>
+	</bean>
+
+
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los proyectos.
+	-->
+	<bean id="allProjectsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select distinct p from zinbig.item.model.projects.Project p</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los ítems
+		públicos.
+	-->
+	<bean id="allPublicItemsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select distinct i from zinbig.item.model.Item i
+				where i.project.publicProject=true</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los ítems
+		públicos y los pertenecientes a los proyectos de un usuario dado.
+	-->
+	<bean id="allItemsOfUserQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select distinct i from zinbig.item.model.Item i join i.project
+				p
+				where p.publicProject=true or p.oid in (:aList)</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los enlaces de un 
+		workflow que referencian a un conjunto de nodos.
+	-->
+	<bean id="workflowLinkDescriptionsReferencingWorkflowNodeDescriptions" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select distinct wld from zinbig.item.model.workflow.WorkflowLinkDescription wld
+			where wld.initialNodeDescription.oid in (:aList) 
+			or wld.finalNodeDescription.oid in (:aList)</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los nodos vecinos a un nodo dado.
+	-->
+	<bean id="allAdjacentWorkflowNodeDescriptions" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select distinct l.finalNodeDescription from zinbig.item.model.workflow.WorkflowLinkDescription l 
+			  where l.initialNodeDescription.oid =:anOid</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los nodos anteriores de un ítem.
+	-->
+	<bean id="oldWorkflowNodesOfItem" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select i.oldWorkflowNodes from zinbig.item.model.Item i 
+			  where i.oid =:anOid</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los conjuntos
+		de prioridades del sistema.
+	-->
+	<bean id="allPrioritySetsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select distinct t.prioritySets from zinbig.item.model.Tracker t</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los tipos de ítems del sistema.
+	-->
+	<bean id="allItemTypesQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select distinct it from zinbig.item.model.Tracker t join t.itemTypes it </value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los tipos de ítems utilizados en los proyectos.
+	-->
+	<bean id="allItemTypesOfProjects" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select distinct it from zinbig.item.model.projects.Project p join p.itemTypes it </value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todas las descripciones 
+		de nodos utilizadas en los proyectos.
+	-->
+	<bean id="allWorkflowNodeDescriptionsOfProjects" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select distinct wd.initialNodeDescription from zinbig.item.model.projects.Project p join p.workflowDescription wd </value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todas las descripciones 
+		de nodos iniciales utilizadas en los proyectos.
+	-->
+	<bean id="allInitialWorkflowNodeDescriptionsOfProjects" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select distinct wd.workflowNodeDescriptions from zinbig.item.model.projects.Project p join p.workflowDescription wd </value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todas las operaciones
+		por id.
+	-->
+	<bean id="operationsByIdsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select o from zinbig.item.model.Operation o where o.id in
+				(:aList)</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todas las operaciones
+		por id.
+	-->
+	<bean id="itemFilesByIdQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select i from zinbig.item.model.ItemFile i where i.id in
+				(:aList)</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los proyectos
+		por id.
+	-->
+	<bean id="projectsByIdsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p from zinbig.item.model.projects.Project p where p.id
+				in (:aList) </value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los conjuntos de prioridades
+		por id.
+	-->
+	<bean id="prioritySetsByIdsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p from zinbig.item.model.projects.PrioritySet p where p.id
+				in (:aList) </value>
+		</property>
+	</bean>
+	
+	
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los tipos de
+		ítems por sus ids.
+	-->
+	<bean id="itemTypesByIdQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p from zinbig.item.model.ItemType p where p.id
+				in (:aList) </value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los ítems por sus oids.
+	-->
+	<bean id="itemsByIdQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select i from zinbig.item.model.Item i where i.id
+				in (:aList) </value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los ítems por sus ids.
+	-->
+	<bean id="itemsByItemIdQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select i from zinbig.item.model.projects.Project p join p.items i where i.itemId
+				in (:aList) and p.id= :anOid </value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los adjuntos por sus ids.
+	-->
+	<bean id="itemFilessByIdQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select i from zinbig.item.model.ItemFile i where i.id
+				in (:aList) </value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar prioridades por sus
+		ids.
+	-->
+	<bean id="prioritiesByIdsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select p from zinbig.item.model.projects.Priority p where p.id
+				in (:aList) </value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar descripciones de nodos por sus
+		ids.
+	-->
+	<bean id="workflowNodeDescriptionsByIdsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select wnd from zinbig.item.model.workflow.WorkflowNodeDescription wnd where wnd.id
+				in (:aList) </value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar descripciones de enlaces por sus
+		ids.
+	-->
+	<bean id="workflowLinkDescriptionsByIdsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select wld from zinbig.item.model.workflow.WorkflowLinkDescription wld where wld.id
+				in (:aList) </value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar nodos de workflow que 
+		referencian a las descripciones de nodos recibidos.
+	-->
+	<bean id="workflowNodeReferencingDescriptionsByIdsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select wn from zinbig.item.model.workflow.WorkflowNode wn where wn.nodeDescription.id
+				in (:aList) </value>
+		</property>
+	</bean>
+
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los usuarios.
+	-->
+	<bean id="allUsersQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select u from zinbig.item.model.users.User u where
+				deletable=true </value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar todos los grupos de
+		usuarios por id.
+	-->
+	<bean id="userGroupsByIdsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select ug from zinbig.item.model.users.UserGroup ug where
+				ug.id
+				in (:aList)</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todas las descripciones de propiedades
+		por sus ids.
+	-->
+	<bean id="additionalPropertiesByIdsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select ip from zinbig.item.model.properties.PropertyDescription ip where
+				ip.id
+				in (:aList)</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los usuarios por id.
+	-->
+	<bean id="usersByIdsQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select u from zinbig.item.model.users.User u where
+				u.id
+				in (:aList)</value>
+		</property>
+	</bean>
+
+	<!--
+		Objeto que representa la consulta para recuperar la cantidad de
+		proyectos que utilizan una descripción de workflow dada.
+	-->
+	<bean id="projectsWithWorkflowDescriptionIdQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>SELECT count(p) FROM zinbig.item.model.projects.Project p
+				where p.workflowDescription.id = :anId  </value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los enlaces de 
+		una descripción de workflow.
+	-->
+	<bean id="allWorkflowLinkDescriptionsOfWorkflowDescriptionQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select l from zinbig.item.model.workflow.WorkflowDescription w join w.workflowLinkDescriptions l where w.id = :anOid</value>
+		</property>
+	</bean>
+	
+	<!--
+		Objeto que representa la consulta para recuperar todos los usuarios cuyo username comienza con un string dado.
+	-->
+	<bean id="usersWithUsernameLikeQuery" class="zinbig.item.util.persistence.ItemQuery">
+		<property name="queryString">
+			<value>select u from zinbig.item.model.users.User u where u.username like :aString</value>
+		</property>
+	</bean>
+	
+
+
+</beans>

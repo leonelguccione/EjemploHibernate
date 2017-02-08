@@ -1,0 +1,47 @@
+<wicket:extend>
+ 
+ <div class="tab" >
+ 
+ <h2><wicket:message key="massiveItemsMovement.pageTitle">Movimiento masivo de ítems</wicket:message></h2>
+
+	<a class="viewAllLink" wicket:id="viewAllLink"><wicket:message
+		key="massiveItemsMovementPage.viewAll"></wicket:message></a>
+	
+	
+			<form wicket:id="massiveForm" >
+			<div class="small">
+				<div class="headingRequired">  
+					<div> 
+					<wicket:message key="massiveItemsMovementForm.project">Proyecto</wicket:message>&nbsp;<div class="requiredField">*</div>
+					</div>
+					<select class="select" tabindex=1 wicket:id="project"></select>
+					<div class="errorS" wicket:id="projectMIMFeedback"></div>
+				</div>	
+				<div class="headingRequired">  
+					<div> 
+					<wicket:message key="massiveItemsMovementForm.nextNode">Nodo</wicket:message>&nbsp;<div class="requiredField">*</div>
+					</div>
+					<select class="select" tabindex=1 wicket:id="nextNode"></select>
+					<div class="errorS" wicket:id="nodeMIMFeedback"></div>
+				</div>	
+				<div class="headingRequired">  
+					<div>  
+					<wicket:message key="massiveItemsMovementForm.items">Ítems</wicket:message>&nbsp;<div class="requiredField">*</div>
+					</div>						
+					<textarea tabindex=2 class="textarea" wicket:id="itemsField"></textarea>
+					<div class="errorTW" wicket:id="itesmFieldFeedback"></div>	
+				</div> 				
+			</div>
+			<div class="heading" style="width: 100%;height: 10px;">
+			
+			</div>
+			<a wicket:id="cancelLink" class="button"><wicket:message key="massiveItemsMovementForm.cancel">Cancelar</wicket:message></a>
+			&nbsp;
+			<a wicket:id="submitLink" class="sendButtonRight"><wicket:message key="massiveItemsMovementForm.send">Enviar</wicket:message></a>
+
+			</form>
+	
+</div>
+
+</wicket:extend>
+

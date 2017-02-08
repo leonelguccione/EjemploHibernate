@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.util">
+  <class name="SystemProperty" table="system_property">
+  <id name="oid" type="string" column="OID_PROPERTY" >
+<!--			<generator class="org.hibernate.id.TableHiLoGenerator" />-->
+<generator class="assigned"></generator>
+		</id>
+		<property name="propertyName" column="property_name" />
+		<property name="propertyValue" column="property_value" />
+		
+	</class>
+	
+
+</hibernate-mapping>

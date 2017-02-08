@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.util">
+  <class name="ItemStatistic" table="statistics">
+  	<id name="oid" type="string" column="OID_STATISTIC" >
+
+		<generator class="assigned"></generator>
+	</id>
+		<property name="updateTime" column="update_time" />
+		<property name="itemsCount" column="items_count" />
+		<property name="usersCount" column="users_count" />
+		<property name="projectsCount" column="projects_count" />
+		<property name="openItemsCount" column="open_items_count" />
+		<property name="publicProjectsCount" column="public_projects_count" />
+		<property name="mostActiveProjectName" column="most_active_project_name" />
+		<property name="mostActiveProjectOid" column="most_active_project_oid" />
+		<property name="firstMostActiveUser" column="most_active_user_1" />
+		<property name="secondMostActiveUser" column="most_active_user_2" />
+		<property name="thirdMostActiveUser" column="most_active_user_3" />
+		<property name="mostInterestingItemId" column="most_interesting_item_id" />
+		<property name="mostInterestingItemOid" column="most_interesting_item_oid" />
+	
+		
+	</class>
+	
+
+</hibernate-mapping>

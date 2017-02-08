@@ -1,0 +1,82 @@
+
+<wicket:panel>
+
+<form wicket:id="listItemsForm">
+ &nbsp;
+<table width="100%">
+<tr>
+	<td>
+	<div class="errorControlTableI" wicket:id="feedback">Feedback</div>
+	</td> 	
+</tr>
+<tr>
+	<td>
+	<div class="controlsTable">
+		<ul class="actionTable">
+			<li><div class="listCount"><wicket:message
+			key="viewItemsPage.found">Hallados</wicket:message>:&nbsp;<span wicket:id="count">0</span></div></li>&nbsp;
+			<li><a class="closeTab" wicket:id="closeLink"><wicket:message key="viewItemsPage.closeTab">Cerrar</wicket:message></a></li>
+			<li><a class="delete" wicket:id="deleteItemsLink"><wicket:message key="viewItemsPage.deleteItems">Eliminar items</wicket:message></a></li>
+			<li><a class="aggregate" wicket:id="aggregateLink"><wicket:message key="viewItemsPage.aggregateItems">Unificar items</wicket:message></a></li>
+			<li><a class="save" wicket:id="saveLink"><wicket:message key="viewItemsPage.saveFilter">Eliminar items</wicket:message></a></li><span wicket:id="modal1"></span>
+			<li><a class="delete" wicket:id="deleteFilterLink"><wicket:message key="viewItemsPage.deleteFilter">Eliminar filtro</wicket:message></a></li> 
+			<li><a class="edit" wicket:id="editFilterLink"><wicket:message key="viewItemsPage.editFilter">Editar filtro</wicket:message></a></li>
+			<li><a class="star" wicket:id="favoriteFilterLink"><span wicket:id="favoriteFilterLabel">Marcar favorito</span></a></li>            
+			<span class="limit" wicket:id="limitLabel">Cantidad</span>
+			<li><a class="massive" wicket:id="massiveLink"><wicket:message
+			key="MASSIVE_ITEMS_MOVEMENT">Pasaje masivo</wicket:message></a></li>
+        </ul>             
+	</div>
+	</td>
+</tr>
+<tr>
+	<td>
+	<div wicket:id="group">
+	<table class="grilla"  cellpadding="0" cellspacing="0" style="width:100%;">
+         	<tr style="height: 20px;">
+            	<th style="width: 2%"><input  type="checkbox" wicket:id="groupselector">&nbsp;</input></th>
+                <th style="width: 2%" >&nbsp;</th>
+                <th style="width: 4%;"><a wicket:id="sortByIdLink"><wicket:message key="viewItemsPage.id">Id</wicket:message></a></th>
+                <th style="width: 17%;"><a wicket:id="sortByResponsibleLink"><wicket:message key="viewItemsPage.responsible">Responsable</wicket:message></a></th>
+                <th style="width: 15%;"><a wicket:id="sortByTitleLink"><wicket:message key="viewItemsPage.title">Title</wicket:message></a></th>	
+                <th style="width: 10%;"><a wicket:id="sortByNodeLink"><wicket:message key="viewItemsPage.node">Node</wicket:message></a></th>
+                <th style="width: 10%;"><a wicket:id="sortByStateLink"><wicket:message key="viewItemsPage.state">State</wicket:message></a></th>	
+                <th style="width: 10%;"><a wicket:id="sortByItemTypeLink"><wicket:message key="viewItemsPage.itemType">Type</wicket:message></a></th>	
+                <th style="width: 15%;"><a wicket:id="sortByCreationDateLink"><wicket:message key="viewItemsPage.creationDate">Creation date</wicket:message></a></th>	
+                <th style="width: 15%;"><a wicket:id="sortByProjectNameLink"><wicket:message key="viewItemsPage.projectName">Project</wicket:message></a></th>					
+            </tr>
+           	<tr wicket:id="pageable" onmouseover="paint(this)" onmouseout="unpaint(this)">
+				<td><input style="display:block!important;"  type="checkbox" wicket:id="cb"/></td>
+				<td>&nbsp;</td>
+				<td><a class="tableLink" wicket:id="viewLink"><span wicket:id="id">Id</span></a></td>
+				<td><span wicket:id="responsible">Responsable</span></td>
+				<td><span wicket:id="title" style="cursor:help">Title</span></td>
+				<td><span wicket:id="node">Node</span></td>	
+				<td><span wicket:id="state">State</span></td>	
+				<td><span wicket:id="type">Type</span></td>	
+				<td><span wicket:id="creationDate">Creation date</span></td>
+				<td><span wicket:id="projectName">ProjectName</span></td>					
+			</tr>
+	</table>	
+	</div>
+	</td>
+</tr>
+<tr>
+	<td>	
+	<div class="navigatorItems" wicket:id="navigator">[dataview navigator]</div>
+	
+	<div class="itemsPerPageClassItems" wicket:id="itemsPerPageSelectionComponent"></div>
+	</td>
+</tr>	
+</table>
+</form>
+<script language="JavaScript">
+function paint(t){
+t.style.backgroundColor="#E3DDC3";
+}
+
+function unpaint(t){
+t.style.backgroundColor="#FFFFFF";
+}
+</script>
+</wicket:panel>

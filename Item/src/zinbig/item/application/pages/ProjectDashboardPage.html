@@ -1,0 +1,48 @@
+<wicket:extend>
+
+	<div class="listingH2">
+		<wicket:message key="projectDashboardPage.title">Pizarra del proyecto</wicket:message>
+		<span wicket:id="projectName"></span>
+	</div>
+	<br></br>
+	<div class="controlsTableDP">
+		<ul class="actionTable">
+			<li>
+			<a class="star" wicket:id="addFavoriteProjectLink">
+			
+			<wicket:message	key="projectDashboardPage.newFavorite">
+			Favorito!
+			</wicket:message>
+			</a>
+			</li>
+			<li>
+			<a class="delete" wicket:id="removeFavoriteProjectLink">
+			
+			<wicket:message	key="projectDashboardPage.removeFavorite">
+			Favorito!
+			</wicket:message>
+			</a>
+			</li>
+		</ul>
+	</div>	
+	<table >
+		<tr>
+			<td>
+			<div id="chartdivA" align="left"></div>
+			</td>
+			<td>
+			<div id="chartdivB" align="left"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div id="chartdivC" align="left"></div>
+			</td>
+			<td>
+			<div id="chartdivD" align="left"></div>
+			</td>
+		</tr>
+	</table>
+	
+
+</wicket:extend>

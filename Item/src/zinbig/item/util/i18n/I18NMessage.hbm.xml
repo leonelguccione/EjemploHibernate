@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.util.i18n">
+  <class name="I18NMessage" table="i18n_message" mutable="false">
+  <id name="oid" type="string" column="OID_MESSAGE" >
+<!--			<generator class="org.hibernate.id.TableHiLoGenerator" />-->
+<generator class="assigned"></generator>
+		</id>
+		<property name="message" />
+		<property name="locale" />
+		<property name="messageKey" column="MESSAGE_KEY" />
+	</class>
+	
+
+</hibernate-mapping>

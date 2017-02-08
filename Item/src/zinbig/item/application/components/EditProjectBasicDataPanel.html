@@ -1,0 +1,66 @@
+<wicket:panel>
+<div class="tab">
+	
+	<form wicket:id="editProjectForm">
+		<div class="small">
+			<div class="headingRequired">  
+				<div>  
+				<wicket:message key="editProjectForm.name">Nombre</wicket:message>&nbsp;<div class="requiredField">*</div>
+				</div>
+				<input tabindex=1 type="text" wicket:id="nameEPF" /> 
+				<img src="" wicket:id="indicatorImg" style="position:relative; top:3px; left: 10px;display:none;" />
+				<div class="errorC" wicket:id="nameEPFFeedback"></div>
+			</div>
+			<div class="headingRequired">  
+				<div> 
+				<wicket:message key="editProjectForm.shortname">Shortname</wicket:message>&nbsp;<div class="requiredField">*</div>
+				</div>
+				<input tabindex=2 type="text" wicket:id="shortnameEPF" />
+				<div class="errorC"	wicket:id="shortnameEPFFeedback"></div>
+			</div>
+			<div class="headingRequired">  
+				<div>
+				<wicket:message key="editProjectForm.leader">Líder</wicket:message>&nbsp;<div class="requiredField">*</div>
+				</div>
+				<select class="select" tabindex=3 wicket:id="leaderEPF"></select>
+			    <div wicket:id="leaderEPFFeedback"></div>
+			</div>	
+<!--			<div class="headingRequired">  -->
+<!--				<div> -->
+<!--				<wicket:message key="editProjectForm.prioritySet">Prioridades</wicket:message>	&nbsp;<div class="requiredField">*</div>-->
+<!--				</div>-->
+<!--				<select class="select" tabindex=4 wicket:id="prioritySetEPF"></select>-->
+<!--				<div class="errorC" wicket:id="prioritySetEPFFeedback"></div>-->
+<!--			</div>-->
+			<div class="headingRequired">  
+				<div>
+				<wicket:message key="editProjectForm.assignmentStrategy">Estrategia de asignación del primer responsable</wicket:message>&nbsp;<div class="requiredField">*</div>
+				</div>
+				<select class="select" tabindex=5 wicket:id="itemAssignmentStrategyEPF"></select>
+				<div class="errorS" wicket:id="itemAssignmentStrategyEPFFeedback"></div>
+			</div>
+			<div class="heading">  
+				<div>
+				<wicket:message key="editProjectForm.link">Link</wicket:message>
+				</div>
+				<input tabindex=6 type="text" wicket:id="linkEPF" />
+				<div class="errorC" wicket:id="linkEPFFeedback"></div>
+			</div>	
+			<div class="heading">  
+				<div>
+				<wicket:message key="editProjectForm.publicProject">Proyecto público?</wicket:message>
+				</div>	
+				<input tabindex=7 type="checkbox" wicket:id="publicProject" />			
+			</div>		
+		</div>	
+		<div class="heading" style="width: 100%;height: 10px;">
+			
+		</div>
+		<a class="button" wicket:id="cancelLink"><wicket:message
+					key="editProjectForm.cancel">Cancelar</wicket:message></a>
+		&nbsp;
+		<a wicket:id="submitLink" class="sendButtonRight"><wicket:message
+					key="editProjectForm.send">Enviar</wicket:message></a>	
+	</form>
+</div>
+</wicket:panel>

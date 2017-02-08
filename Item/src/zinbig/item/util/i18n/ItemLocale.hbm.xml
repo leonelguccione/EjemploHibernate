@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.util.i18n">
+	<class name="ItemLocale" table="item_locale" mutable="false">
+		<id name="oid" type="string" column="OID_LOCALE" >
+<!--			<generator class="org.hibernate.id.TableHiLoGenerator" />-->
+<generator class="assigned"></generator>
+		</id>
+		<property name="countryCode" column="COUNTRY_CODE" />
+		<property name="languageCode" column="LANGUAGE_CODE" />
+	</class>
+	
+	
+</hibernate-mapping>

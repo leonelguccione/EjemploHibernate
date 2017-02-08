@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model.workflow">
+
+	<class name="WorkflowNode" table="workflow_node">
+		<id name="oid" type="string" column="OID_WORKFLOW_NODE">
+
+			<generator class="assigned"></generator>
+		</id>
+
+		<property name="title" length="50" />
+		<property name="creationDate" column="creation_date" />
+		<property name="finishDate" column="finish_date" />
+
+		<many-to-one lazy="proxy" name="nodeDescription" column="oid_node_description"
+			not-null="true" class="zinbig.item.model.workflow.WorkflowNodeDescription"
+			cascade="all" />
+
+		<many-to-one lazy="proxy" name="currentResponsible"
+			column="oid_current_responsible" class="zinbig.item.model.users.AbstractUser"
+			cascade="all" />
+	</class>
+
+
+</hibernate-mapping>

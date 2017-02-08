@@ -1,0 +1,34 @@
+<wicket:extend>
+<div class="tab" >
+ 
+ <h2><wicket:message key="editItemTypeForm.pageTitle">Edición de tipo de ítem</wicket:message></h2>
+
+	<a class="viewAllLink" wicket:id="viewAllLink"><wicket:message
+		key="editItemTypePage.viewAll"></wicket:message></a>
+	
+	
+			<form wicket:id="editItemTypeForm" >
+			<div class="small">
+				<div class="headingRequired">  
+					<div>  
+					<wicket:message key="editItemTypeForm.title">Título</wicket:message>&nbsp;<div class="requiredField">*</div>
+					</div>						
+					<input tabindex=1 type="text" wicket:id="titleEITF" />
+					<img src=""	wicket:id="indicatorImg" style="position:relative; top:3px; left: 10px;display:none;" />
+					<div class="errorC" wicket:id="titleEITFFeedback"></div>	
+				</div> 				
+			</div>
+			<div class="heading" style="width: 100%;height: 10px;">
+			
+			</div>
+			<a wicket:id="cancelLink" class="button"><wicket:message key="editItemTypeForm.cancel">Cancelar</wicket:message></a>
+			&nbsp;
+			<a wicket:id="submitLink" class="sendButtonRight"><wicket:message key="editItemTypeForm.send">Enviar</wicket:message></a>
+
+			</form>
+	
+</div>
+	
+	
+</wicket:extend>
+

@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model">
+	<class name="Tracker" table="tracker">
+
+		<id name="oid" type="string" column="oid_tracker">
+			<generator class="assigned"></generator>
+		</id>
+
+
+
+
+		<bag name="operations"  cascade="all">
+			<key column="oid_tracker" not-null="true" />
+			<one-to-many class="Operation" />
+		</bag>
+
+		<bag name="projects"  cascade="all">
+			<key column="oid_tracker" not-null="false" />
+			<one-to-many class="zinbig.item.model.projects.Project" />
+		</bag>
+
+		<bag name="users"  cascade="all">
+			<key column="oid_tracker" not-null="false" />
+			<one-to-many class="zinbig.item.model.users.User" />
+		</bag>
+
+		<bag name="prioritySets"  cascade="all">
+			<key column="oid_tracker" not-null="false" />
+			<one-to-many class="zinbig.item.model.projects.PrioritySet" />
+		</bag>
+
+		<bag name="userGroups"  cascade="all">
+			<key column="oid_tracker" not-null="false" />
+			<one-to-many class="zinbig.item.model.users.UserGroup" />
+		</bag>
+
+
+		<bag name="workflowDescriptions"  cascade="all">
+			<key column="oid_tracker" not-null="false" />
+			<one-to-many class="zinbig.item.model.workflow.WorkflowDescription" />
+		</bag>
+		
+		<bag name="itemTypes"  cascade="all">
+			<key column="oid_tracker" not-null="false" />
+			<one-to-many class="zinbig.item.model.ItemType" />
+		</bag>
+
+		<many-to-one  name="administrator" column="OID_ADMINISTRATOR"
+			not-null="true" class="zinbig.item.model.users.User" cascade="all" />
+
+
+
+
+
+<!-- 
+		<bag name="operations" lazy="extra" cascade="all">
+			<key column="oid_tracker" not-null="true" />
+			<one-to-many class="Operation" />
+		</bag>
+
+		<bag name="projects" lazy="extra" cascade="all">
+			<key column="oid_tracker" not-null="false" />
+			<one-to-many class="zinbig.item.model.projects.Project" />
+		</bag>
+
+		<bag name="users" lazy="extra" cascade="all">
+			<key column="oid_tracker" not-null="false" />
+			<one-to-many class="zinbig.item.model.users.User" />
+		</bag>
+
+		<bag name="prioritySets" lazy="extra" cascade="all">
+			<key column="oid_tracker" not-null="false" />
+			<one-to-many class="zinbig.item.model.projects.PrioritySet" />
+		</bag>
+
+		<bag name="userGroups" lazy="extra" cascade="all">
+			<key column="oid_tracker" not-null="false" />
+			<one-to-many class="zinbig.item.model.users.UserGroup" />
+		</bag>
+
+
+		<bag name="workflowDescriptions" lazy="extra" cascade="all">
+			<key column="oid_tracker" not-null="false" />
+			<one-to-many class="zinbig.item.model.workflow.WorkflowDescription" />
+		</bag>
+		
+		<bag name="itemTypes" lazy="extra" cascade="all">
+			<key column="oid_tracker" not-null="false" />
+			<one-to-many class="zinbig.item.model.ItemType" />
+		</bag>
+
+		<many-to-one lazy="proxy" name="administrator" column="OID_ADMINISTRATOR"
+			not-null="true" class="zinbig.item.model.users.User" cascade="all" /> -->
+
+	</class>
+</hibernate-mapping>

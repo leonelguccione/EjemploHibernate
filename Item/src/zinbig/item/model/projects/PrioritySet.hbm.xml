@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model.projects">
+
+	<class name="PrioritySet" table="priority_set">
+		<id name="oid" type="string" column="OID_PRIORITY_SET" >
+<!--			<generator class="org.hibernate.id.TableHiLoGenerator" />-->
+<generator class="assigned"></generator>
+		</id>
+
+		<property name="name" length="50"/>
+		<property name="defaultPrioritySet" column="default_priority_set" />
+		<property name="referencesCount" column="references_count" />
+		
+		<bag name="priorities" lazy="extra" cascade="all">
+			<key column="OID_PRIORITY_SET" not-null="false" />
+			<one-to-many class="zinbig.item.model.projects.Priority" />
+		</bag>
+		
+	</class>
+
+</hibernate-mapping>

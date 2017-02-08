@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model.workflow">
+
+	<class name="WorkflowNodeDescription" table="workflow_node_description">
+		<id name="oid" type="string" column="OID_WORKFLOW_NODE_DESCRIPTION">
+
+			<generator class="assigned"></generator>
+		</id>
+		
+		<version column="version_id" name="version" />
+
+		<property name="nodeTitle" column="node_title" length="50" />
+		<property name="finalNode" column="is_final_node" />
+		<property name="referencesCount" column="references_count" length="5"/>
+
+		<bag name="authorizedUsers" lazy="extra" cascade="all"
+				table="node_descriptions_users">
+				<key column="oid_workflow_node_desc" not-null="false" />
+				<many-to-many column="oid_user" class="zinbig.item.model.users.AbstractUser" />
+		</bag>
+		<bag name="workflowLinks" lazy="extra" cascade="all">
+			<key column="OID_WORKFLOW_NODE_DESCRIPTION" not-null="false" />
+			<one-to-many class="zinbig.item.model.workflow.WorkflowLinkDescription" />
+		</bag>
+	</class>
+
+</hibernate-mapping>

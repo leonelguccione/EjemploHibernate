@@ -1,0 +1,43 @@
+<wicket:panel>
+<div class="tab">
+	
+	<form wicket:id="editItemCommentsForm">
+		<div class="small">
+			<div class="headingRequired">  
+				<div>
+				<span wicket:id="commentTitle"></span>&nbsp;<div class="requiredField"><span wicket:id="asterix"></span></div>
+				</div>
+				<textarea class="textarea" tabindex=0 wicket:id="comment"></textarea>
+			    <div class="errorT" wicket:id="commentEICFFeedback"></div>
+			</div>
+			<div class="heading" style="width: 100%;height: 10px;">				
+			</div>
+			<a wicket:id="resetLink" class="button"><wicket:message key="editItemCommentForm.reset">Restablecer</wicket:message></a>
+			&nbsp;
+			<a wicket:id="submitLink" class="sendButtonRight"><wicket:message key="editItemCommentForm.send">Enviar</wicket:message></a>	
+		</div>
+		<div class="heading" style="width: 100%;height: 20px;">				
+		</div>
+		<div class="warning2" style="position:relative; top:-10px;" wicket:id="noResultsLabel">
+		</div>
+		<span wicket:id="group">
+		<table class="grilla" cellpadding="0" cellspacing="0">
+         	<tr style="height: 20px;">
+            	<th style="width:20px"><input  type="checkbox" wicket:id="groupselector">&nbsp;</input></th>
+                <th style="width:10px" >&nbsp;</th>
+                <th ><wicket:message key="editItemCommentForm.comment">Comentario</wicket:message></th>				
+                <th ><wicket:message key="editItemCommentForm.date">Fecha</wicket:message></th>
+                <th ><wicket:message key="editItemCommentForm.creator">Creador</wicket:message></th>
+            </tr>
+           	<tr wicket:id="pageable">
+				<td><input  type="checkbox" wicket:id="cb"/></td>
+				<td><img src="/Item/images/blank.png"/></td>	
+				<td><span wicket:id="comment">Commentario</span></td>				
+				<td><span wicket:id="date">Fecha</span></td>
+				<td><span wicket:id="creator">Creador</span></td>
+			</tr>
+		</table>	
+	</span>
+	</form>
+</div>
+</wicket:panel>

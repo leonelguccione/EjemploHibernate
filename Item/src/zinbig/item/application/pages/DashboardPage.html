@@ -1,0 +1,44 @@
+<wicket:extend>
+
+	<div class="tab">
+
+	
+	<div class="dashboardBorder">
+		
+		<div class="dashboardLeftBox">
+		<img class="dashboardLeftBoxImage" src="/Item/images/attention.jpg"><br>
+		<wicket:message key="dashboard.items">Ítems</wicket:message>: <b><span wicket:id="itemsCount">0</span></b><br>
+		<wicket:message key="dashboard.openItems">Abiertos</wicket:message>:<b><span wicket:id="openItemsCount">0</span></b><br>
+		<wicket:message key="dashboard.closedItems">Cerrados</wicket:message>:<b><span wicket:id="closedItemsCount">0</span></b><br>
+		<br>
+		<span wicket:id="mostVotedItem">Proyecto más activo</span><a href="#" class="mostActiveProject" wicket:id="mostInterestingItemLink"> <div class="mostActiveItemLink" wicket:id="mostInterestingItem" ></div> </a>
+		</div>
+		
+		<div class="dashboardLeftBox">
+		<img class="dashboardLeftBoxImage" src="/Item/images/project.jpg"><br>
+		<wicket:message key="dashboard.openProjects">Proyectos abiertos</wicket:message>: <b><span wicket:id="projectsCount">0</span></b><br>
+		<wicket:message key="dashboard.publicProjects">Públicos</wicket:message>: <b><span wicket:id="publicProjectsCount">0</span></b> <br>
+		<wicket:message key="dashboard.privateProjects">Privados</wicket:message>:<b><span wicket:id="privateProjectsCount">0</span></b> <br>
+		<br>
+		<span wicket:id="mostActiveProject">Proyecto más activo</span> <a href="#" class="mostActiveProject" wicket:id="mostActiveProjectLink"> <div class="mostActiveProjectLink" wicket:id="mostActiveProjectName" ></div> </a>
+		</div>	
+		
+		<div class="dashboardRightBox">
+		<img class="dashboardRightBoxImage" src="/Item/images/Users48.gif"><br>
+		<wicket:message key="dashboard.users">Cantidad de usuarios</wicket:message>: <b><span wicket:id="usersCount">0</span></b><br>		<br>
+		<span wicket:id="mostActiveUsers">Usuarios más activos</span><br>
+			 <b><span wicket:id="mostActiveUser1">0</span></b><br>
+			 <b><span wicket:id="mostActiveUser2">0</span></b><br>
+			 <b><span wicket:id="mostActiveUser3">0</span></b>
+		</div>
+			
+		
+		
+		<div class="dashboardBottom">
+			<wicket:message key="dashboard.updateTime">Última actualización:</wicket:message>&nbsp;<b><span wicket:id="updateTime">Una fecha</span></b>				
+		</div>
+	</div>
+   
+	</div>
+
+</wicket:extend>

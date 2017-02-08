@@ -1,0 +1,83 @@
+
+<wicket:extend>
+
+	<div class="tab" >
+ 	<h2><wicket:message key="addProjectForm.title">Alta de proyecto</wicket:message></h2>
+ 	
+ 	<a class="viewAllLink" wicket:id="viewAllLink"><wicket:message
+		key="addProjectPage.viewAll">Ver todos</wicket:message></a>
+ 
+ 	<form wicket:id="addProjectForm">
+ 		<div class="small">
+			<div class="headingRequired">  
+				<div>  
+ 				<wicket:message key="addProjectForm.name">Nombre</wicket:message>&nbsp;<div class="requiredField">*</div>
+ 				</div>
+ 				<input tabindex=1 type="text" wicket:id="nameAPF" /> 
+				<img src="" wicket:id="indicatorImg" style="position:relative; top:3px; left: 10px;display:none;" />
+				<div class="errorC" wicket:id="nameAPFFeedback"></div>
+			</div>	
+			<div class="headingRequired">  
+				<div>
+				<wicket:message key="addProjectForm.shortname">Shortname</wicket:message>&nbsp;<div class="requiredField">*</div>
+				</div>
+				<input tabindex=2 type="text" wicket:id="shortnameAPF" />
+				<div class="errorC" wicket:id="shortnameAPFFeedback"></div>
+			</div>	
+			<div class="headingRequired">  
+				<div>  
+ 				<wicket:message key="addProjectForm.leader">Líder</wicket:message>&nbsp;<div class="requiredField">*</div>
+ 				</div>
+ 				<input tabindex=1 type="text" wicket:id="leaderAPF" />				
+				<div class="errorC" wicket:id="leaderAPFFeedback"></div>
+			</div>				
+			<div class="headingRequired">  
+				<div>
+				<wicket:message key="addProjectForm.prioritySet">Prioridades</wicket:message>&nbsp;<div class="requiredField">*</div>
+				</div>
+				<select class="select" tabindex=4 wicket:id="prioritySetAPF">
+				</select>
+				<div class="errorS" wicket:id="prioritySetAPFFeedback"></div>
+			</div>	
+			<div class="headingRequired">  
+				<div>
+				<wicket:message key="addProjectForm.assignmentStrategy">Estrategia de asignación del primer responsable</wicket:message>&nbsp;<div class="requiredField">*</div>
+				</div>
+				<select class="select" tabindex=5 wicket:id="itemAssignmentStrategyAPF"></select>
+				<div class="errorS" wicket:id="itemAssignmentStrategyAPFFeedback"></div>
+			</div>
+			<div class="heading" style="width: 100%;height: 10px;">
+			
+			</div>		
+			<div class="heading">  
+					<wicket:message key="addProjectForm.itemTypes">Tipos de ítems</wicket:message>
+			</div>
+			<div class="heading"> 		
+				<div wicket:id="itemTypesPalette"></div>
+			</div>		
+			<div class="heading">  
+				<div>
+				<wicket:message key="addProjectForm.link">Link</wicket:message>
+				</div>
+				<input tabindex=7 type="text" wicket:id="linkAPF" />
+				<div class="errorC" wicket:id="linkAPFFeedback"></div>
+			</div>	
+			<div class="heading">  
+				<div>
+				<wicket:message key="addProjectForm.publicProject">Proyecto público?</wicket:message>
+				</div>
+				<input type="checkbox" tabindex=8 wicket:id="publicProject" />
+			</div>	
+		</div>
+		<div class="heading" style="width: 100%;height: 10px;">
+			
+		</div>
+		<a class="button" wicket:id="cancelLink"><wicket:message key="addProjectForm.cancel">Cancelar</wicket:message></a>	
+		&nbsp;	
+		<a class="sendButtonRight" wicket:id="submitLink"><wicket:message key="addProjectForm.send">Enviar</wicket:message></a>
+ 	</form>
+ 
+ 	</div>
+
+</wicket:extend>
+

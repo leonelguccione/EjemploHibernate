@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model">
+
+	<typedef name="ItemState" class="zinbig.item.util.persistence.GenericEnumUserType">
+		<param name="enumClass">zinbig.item.model.ItemStateEnum</param>
+		<param name="identifierMethod">toInt</param>
+		<param name="valueOfMethod">fromInt</param>
+	</typedef>
+
+
+	<class name="Item" table="item">
+		<id name="oid" type="string" column="OID_ITEM" >
+			<generator class="assigned"></generator>
+		</id>
+
+		<version column="version_id" name="version" />
+
+		<property name="description" length="2000" />
+		<property name="itemId" column="item_id" />
+		<property name="title" length="500" />
+		<property name="creationDate" column="creation_date" />
+		<property name="finished" />
+
+		<property name="state" column="state"
+			type="ItemState" />
+
+		<many-to-one lazy="proxy" name="project" column="oid_project"
+			 class="zinbig.item.model.projects.Project" cascade="all" />
+
+		<many-to-one lazy="proxy" name="priority" 
+			class="zinbig.item.model.projects.Priority" cascade="all" />
+
+		<many-to-one lazy="proxy" name="currentWorkflowNode"
+		 class="zinbig.item.model.workflow.WorkflowNode"
+			cascade="all" />
+
+		<many-to-one lazy="proxy" name="creator" 
+			class="zinbig.item.model.users.User" cascade="all" />
+			
+		<many-to-one lazy="proxy" name="itemType"  column="oid_item_type"
+			class="zinbig.item.model.ItemType" cascade="all" />	
+
+		<many-to-one lazy="false" name="responsible" 
+			class="zinbig.item.model.users.AbstractUser" cascade="all" />
+			
+		<bag lazy="extra" name="observers" table="item_observers" cascade="all">
+      		<key column="OID_ITEM" />
+	   			 <many-to-many column="OID_USER" 
+	   			 class="zinbig.item.model.users.AbstractUser" />
+	  	</bag>
+	  	
+	  	<bag lazy="extra" name="comments" table="comments" cascade="all">
+      		<key column="oid_item" not-null="false" />
+			<one-to-many class="zinbig.item.model.Comment" />
+	  	</bag>
+	  	
+	  	<bag lazy="extra" name="files" table="item_file" cascade="all">
+      		<key column="oid_item" not-null="false" />
+			<one-to-many class="zinbig.item.model.ItemFile" />
+	  	</bag>
+	  	
+	  	<bag lazy="extra" name="oldWorkflowNodes" table="workflow_node" cascade="all">
+      		<key column="oid_item" not-null="false" />
+			<one-to-many class="zinbig.item.model.workflow.WorkflowNode" />
+	  	</bag>
+	  	
+	  	<map name="additionalProperties" table="additional_properties" lazy="extra">
+				<key column="oid_item" />
+				<index column="ADDITIONAL_PROPERTY_KEY" type="string" />
+				<element column="ADDITIONAL_PROPERTY_VALUE" type="string" />
+		</map>
+			
+	</class>
+
+
+
+</hibernate-mapping>

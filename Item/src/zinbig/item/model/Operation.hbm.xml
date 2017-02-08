@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model">
+	<class name="Operation" table="operation">
+		<id name="oid" type="string" column="OID_OPERATION" >
+
+<generator class="assigned"></generator>
+		</id>
+
+		<property name="name" />
+		<property name="menuSection" column="menu_section"/>
+		<property name="categoryName" column="category_name" />
+		<property name="targetPageClassName" column="target_page_class_name" />
+		<property name="administrativeOperation" column="administrative_operation" />
+		<property name="visibleInMenu" column="VISIBLE_IN_MENU" />
+		<property name="executableByAnonymousUser" column="exec_by_anonymous_user" />
+	</class>
+</hibernate-mapping>

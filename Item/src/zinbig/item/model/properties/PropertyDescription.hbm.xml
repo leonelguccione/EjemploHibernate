@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model.properties">
+	<class name="PropertyDescription" table="property_description"
+	abstract="true">
+		<id name="oid" type="string" column="oid_property">
+
+			<generator class="assigned"></generator>
+		</id>
+		
+		<discriminator column="type" type="string"/>		
+
+		<property name="required" column="is_Required"/>
+		
+		<property name="name" length="255"/>
+		
+		<property name="type" insert="false" update="false"/>
+		
+		<subclass name="SimplePropertyDescription" discriminator-value="S">		
+		
+		</subclass>	
+		<subclass name="TextAreaPropertyDescription" discriminator-value="T">		
+		
+		</subclass>	
+		<subclass name="FixedValuesListPropertyDescription" discriminator-value="F">		
+			<property name="values" length="1000"/>
+		</subclass>
+		<subclass name="DynamicValuesListPropertyDescription" discriminator-value="D">		
+			<property name="query" length="1000"/>
+		</subclass>						
+		
+	</class>
+
+</hibernate-mapping>

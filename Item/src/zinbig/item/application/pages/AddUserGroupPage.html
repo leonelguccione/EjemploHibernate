@@ -1,0 +1,40 @@
+
+<wicket:extend>
+
+ <div class="tab" >
+ 
+ <h2><wicket:message key="addUserGroupForm.title">Alta de grupo de usuario</wicket:message></h2>
+
+	<a class="viewAllLink" wicket:id="viewAllLink"><wicket:message
+		key="addUserGroupPage.viewAll"></wicket:message></a>
+
+		<form wicket:id="addUserGroupForm">	
+		<div class="small">
+				<div class="headingRequired">  
+					<div>  
+					<wicket:message key="addUserGroupForm.name">Name</wicket:message>&nbsp;<div class="requiredField">*</div>
+					</div>
+					<input tabindex=1	type="text" wicket:id="nameAUGF" />
+					<img src=""	wicket:id="indicatorImg" style="position:relative; top:3px; left: 10px;display:none;" />
+					<div class="errorC" wicket:id="nameAUGFFeedback"></div>
+				</div>
+				<div class="heading">  
+					<div style="width: 20px; ">  
+					<wicket:message key="addUserGroupForm.email">Email</wicket:message>
+					</div>
+					<input tabindex=2	type="text" wicket:id="emailAUGF" /> 
+					<div class="errorC" wicket:id="emailAUGFFeedback"></div>
+				</div>
+		</div>	
+		<div class="heading" style="width: 100%;height: 10px;">
+			
+		</div>
+		<a class="sendButton" wicket:id="saveLink"><wicket:message	key="addUserGroupForm.send">Send</wicket:message></a>
+		&nbsp;
+		<a wicket:id="saveAndEditLink" class="sendButtonRight"><wicket:message key="addUserGroupForm.saveAndEdit">SaveAndEdit</wicket:message></a>		
+		</form>
+
+
+ </div>
+	
+</wicket:extend>

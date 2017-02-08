@@ -1,0 +1,33 @@
+<wicket:panel>
+	<div>
+		<table style="position: relative; left:-10px;">
+		
+		<tr>
+			<td>
+			<b><span wicket:id="title"></span></b>
+			</td>
+		</tr>	
+		<tr wicket:id="filters">
+			<td>
+			   <a class="filterLink" style="position:relative; top:2px;" wicket:id="removeFavoriteFilterLink"> <img class="starImage" src="/Item/images/deleteicon.gif"/></a>&nbsp;<a class="filterLink" wicket:id="filterLink"><span wicket:id="filter">un filtro</span></a>
+			</td>		
+		</tr>
+		<tr>
+			<td>
+			&nbsp;
+			</td>
+		</tr>	
+		<tr>
+			<td>
+				<span wicket:id="otherFilterLabel">Filtros favoritos</span>
+				<select class="otherFiltersSelect" wicket:id="otherFilters">otros filtros</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			&nbsp;
+			</td>
+		</tr>	
+	</table>
+	</div>
+</wicket:panel>

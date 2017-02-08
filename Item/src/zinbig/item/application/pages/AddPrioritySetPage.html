@@ -1,0 +1,32 @@
+<wicket:extend>
+
+<div class="tab" >
+	<h2><wicket:message key="addPrioritySetForm.title">Alta de grupo de prioridades</wicket:message></h2>
+
+	<a class="viewAllLink" wicket:id="viewAllLink"><wicket:message key="addPrioritySetPage.viewAll">Ver todos</wicket:message></a>
+	<form wicket:id="addPrioritySetForm">
+	<div class="small">
+		<div class="headingRequired">  
+			<div> 
+			<wicket:message key="addPrioritySetForm.name">Nombre</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=1 type="text" wicket:id="nameAPSF" />
+			<img src=""	wicket:id="indicatorImg" style="display: none" />
+			<div class="errorC" wicket:id="nameAPSFFeedback"></div>
+		</div>	
+		<div class="heading">  
+			<div> 
+			<wicket:message key="addPrioritySetForm.defaultPrioritySet">Conjunto por defecto?</wicket:message>
+			</div>
+			<input type="checkbox" wicket:id="defaultPrioritySet" />
+		</div>	
+	</div>
+	<div class="heading" style="width: 100%;height: 10px;">
+			
+	</div>
+	<a class="button" wicket:id="saveLink"><wicket:message key="addPrioritySetForm.send">Send</wicket:message></a>
+	&nbsp;
+	<a wicket:id="saveAndEditLink" class="sendButtonRight"><wicket:message key="addPrioritySetForm.saveAndEdit">SaveAndEdit</wicket:message></a>
+	</form>
+</div>
+</wicket:extend>

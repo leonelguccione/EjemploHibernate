@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8"></meta>
+<title>ITeM 3.0 - 2016</title>
+
+<script type="text/javascript" src="/Item/scripts/ddtabmenu.js">
+
+</script>
+
+<script type="text/javascript" src="/Item/scripts/mouseovertabs.js">
+
+</script>
+
+<script type="text/javascript" src="/Item/scripts/dropdown.js">
+
+</script>
+
+<script type="text/javascript" src="/Item/scripts/FusionCharts.js">
+
+</script>
+
+
+
+<link rel="shortcut icon" href="/Item/images/favicon-transp.ico" />
+<link rel="stylesheet" type="text/css" href="/Item/styles/styles.css" />
+<link rel="stylesheet" type="text/css" href="/Item/styles/mouseovertabs.css" />
+<link rel="stylesheet" type="text/css" href="/Item/styles/prettyForms.css" />
+
+
+</head>
+<body style="white-space: nowrap;"  >
+<table width="100%" border="0px" cellpadding="0px" cellspacing="0px">
+	<tr>		
+		<td width="100%">
+		<div id="headwrap">
+	
+		<div id="headPanel">
+	
+			<div class="topWrap">
+				<table width="100%">
+					<tr>
+						<td width="500px" height="107px" >
+						<div class="logo"></div>	
+						</td>
+						<td style="vertical-align: top">
+						<div wicket:id="userPanel" ></div>		
+						</td>
+					</tr>
+				
+				</table>
+				
+
+				
+			</div>
+			
+			<div id="menu">
+			
+				<div id="mytabsmenu" class="tabsmenuclass">
+		
+					<div class="headermenu" id="ddtabs3">
+				
+						<div wicket:id="menuPanel"></div>
+					
+					</div>
+			
+				</div>
+				
+				<div class="tabsmenucontentclass">
+
+					<div id="mysubmenuarea" wicket:id="submenuPanel"></div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>		
+		</td>
+	</tr>
+</table>
+
+	<div id="bodyWrap" >
+	
+			<div id="bodyContent" >
+
+				<div id="content" >
+				
+					<div style="position:relative; float: right; top:-31px; ">
+					
+					<table >
+						<tr>
+						<td width="200px;">
+						&nbsp;
+						</td>
+						<td width="270px;">
+						<div wicket:id="defaultProjectPanel" class="selectedProject"></div>
+						</td>
+						<td width="130px;">
+						<div wicket:id="searchItemPanel" class="searchPanel"></div>
+						
+						</td>
+						</tr>
+					
+					</table>
+					
+					
+					</div>
+								
+					<div class="filler" >
+				
+						<div id="leftPanel" >
+							<div id="leftTop">
+
+								<wicket:child />
+							
+							</div>
+						
+						</div>
+
+					</div>
+					
+				
+					
+				</div>
+			</div>
+
+	</div>
+
+
+</body>
+
+<script type="text/javascript">
+
+	ddtabmenu.definemenu("ddtabs3", "auto"); 
+	document.forms[0].elements[1].focus();
+</script>
+</html>
+

@@ -1,0 +1,63 @@
+<wicket:panel>
+<div class="tab">
+	
+	<form wicket:id="editItemForm">
+		<div class="small">
+			<a class="followLink" wicket:id="followLink"><wicket:message key="editItemForm.follow">Seguir</wicket:message></a>
+			&nbsp;
+			<a class="takeLink" wicket:id="takeLink"><wicket:message key="editItemForm.take">Tomar</wicket:message></a>
+			<div class="heading">  
+				<div>  
+				<wicket:message key="editItemForm.id">Id</wicket:message>:
+				<b><span wicket:id="itemId"></span></b>
+				</div>				
+			</div>
+			<div class="heading">  
+				<div> 
+				<wicket:message key="editItemForm.currentResponsible">Responsable</wicket:message>:
+				<b><span wicket:id="itemResponsible"></span></b>
+				</div>				
+			</div>
+			<br></br>
+			<div class="headingRequired">  
+				<div>
+				<wicket:message key="editItemForm.title">Título</wicket:message>&nbsp;<div class="requiredField">*</div>
+				</div>
+				<input tabindex=1 type="text" wicket:id="title" />
+			    <div class="errorC" wicket:id="titleEIFFeedback"></div>
+			</div>
+			<div class="headingRequired">  
+				<div> 	
+				<wicket:message key="editItemForm.description">Descripción</wicket:message>&nbsp;<div class="requiredField">*</div>
+				</div>
+				<textarea class="textarea" tabindex=2 wicket:id="description" ></textarea>
+				<div class="errorT" wicket:id="descriptionEIFFeedback"></div>
+			</div>
+			<div class="headingRequired" height="12px">  
+				&nbsp;
+			</div>	
+			<div class="headingRequired">  
+				<div> 
+				<wicket:message key="editItemForm.itemType">Tipo de ítem</wicket:message>&nbsp;<div class="requiredField">*</div>
+				</div>
+				<select class="select" tabindex=3 wicket:id="itemType">	</select>
+				<div class="errorS" wicket:id="itemTypeEIFFeedback"></div>
+			</div>		
+			<div class="headingRequired">  
+				<div> 
+				<wicket:message key="editItemForm.priority">Prioridad</wicket:message>&nbsp;<div class="requiredField">*</div>
+				</div>
+				<select class="select" tabindex=3 wicket:id="priority">	</select>
+				<div class="errorS" wicket:id="priorityEIFFeedback"></div>
+			</div>		
+
+			<div class="heading" style="width: 100%;height: 10px;">
+				
+			</div>
+			<a wicket:id="resetLink" class="button"><wicket:message key="editItemForm.reset">Restablecer</wicket:message></a>
+			&nbsp;
+			<a wicket:id="submitLink" class="sendButtonRight"><wicket:message key="editItemForm.send">Enviar</wicket:message></a>	
+			</div>
+	</form>
+</div>
+</wicket:panel>

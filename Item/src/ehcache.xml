@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+	<defaultCache maxElementsInMemory="10000" eternal="false"/>
+	
+	<cache name="zinbig.item.model.users.User"
+		 eternal="false" timeToLiveSeconds="600"
+		overflowToDisk="true" />
+	<cache
+		name="zinbig.item.model.users.User.userPreferences"
+		 eternal="false" timeToLiveSeconds="600"
+		overflowToDisk="true" />
+</ehcache>

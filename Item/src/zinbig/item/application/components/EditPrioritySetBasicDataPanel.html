@@ -1,0 +1,28 @@
+<wicket:panel>
+<div class="tab">
+	<form wicket:id="editPrioritySetForm">
+	<div class="small">
+		<div class="headingRequired">  
+			<div> 
+			<wicket:message key="editPrioritySetForm.name">Nombre</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=1 type="text" wicket:id="nameEPSF" />
+			<img src=""	wicket:id="indicatorImg" style="display: none" />
+			<div class="errorC" wicket:id="nameEPSFFeedback"></div>
+		</div>
+		<div class="heading">
+			<div>
+			<wicket:message key="editPrioritySetForm.defaultPrioritySet">Conjunto por defecto?</wicket:message>
+			</div>		
+			<input style="border:0;margin:0px;clear:both;" tabindex=2 type="checkbox" wicket:id="defaultPrioritySet" />
+		</div>
+	</div>	
+	<div class="heading" style="width: 100%;height: 10px;">
+			
+	</div>
+	<a wicket:id="cancelLink" class="button"><wicket:message key="editPrioritySetForm.cancel">Cancelar</wicket:message></a>
+	&nbsp;
+	<a wicket:id="saveLink" class="sendButtonRight"><wicket:message key="editPrioritySetForm.send">Enviar</wicket:message></a>	
+	</form>
+</div>
+</wicket:panel>

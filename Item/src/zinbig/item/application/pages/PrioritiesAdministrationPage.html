@@ -1,0 +1,55 @@
+<wicket:extend>
+<table width="100%;" >
+<tr>
+<td>
+<span class="listingH2"><wicket:message key="prioritiesAdministrationPage.title">Prioridades</wicket:message></span>
+</td>
+</tr>
+<form wicket:id="listPrioritiesForm">
+<tr>
+	<td>
+		<div class="controlsTable">
+		<ul class="actionTable">
+			<li><div class="listCount"><wicket:message
+			key="prioritiesAdministrationPage.found">Hallados</wicket:message>:&nbsp;<span wicket:id="count">0</span></div></li>&nbsp;
+			<!-- Link para dar de alta un nuevo proyecto. -->
+        	<li><a class="new" wicket:id="newPrioritySetLink"><wicket:message key="prioritiesAdministrationPage.newPrioritySet">Nueva prioridad</wicket:message></a></li>           
+        	<li><a class="new" wicket:id="deletePrioritySetsLink"><wicket:message key="prioritiesAdministrationPage.deletePrioritySet">Eliminar conjunto de prioridades</wicket:message></a></li>
+        </ul>    
+         
+	</div>
+	<div class="errorControlTable" wicket:id="feedback">Feedback</div>
+	</td>
+</tr>	 
+<tr>
+	<td>	
+	<span wicket:id="group">
+	<table class="grilla"  cellpadding="0" cellspacing="0">
+         	<tr style="height: 20px;">
+            	<th style="width:20px"><input  type="checkbox" wicket:id="groupselector">&nbsp;</input></th>
+                <th style="width:10px" >&nbsp;</th>
+                <th ><a wicket:id="sortByNameLink"><wicket:message key="prioritiesAdministrationPage.name">Nombre</wicket:message></a></th>				
+            </tr>
+           	<tr wicket:id="pageable">
+				<td><input  type="checkbox" wicket:id="cb"/></td>
+				<td><img src="/Item/images/blank.png"/></td>
+				<td><a class="tableLink" wicket:id="editLink"><span wicket:id="name">Nombre</span></a></td>
+			</tr>
+	</table>	
+	</span>
+	</td>
+</tr>
+<tr>
+	<td>	
+	<div class="navigator" wicket:id="navigator">[dataview navigator]</div>
+</td>
+</tr>
+</form>
+<tr>
+<td>
+<div class="itemsPerPageClass" wicket:id="itemsPerPageSelectionComponent"></div>
+</td>
+</tr>
+</table>
+</wicket:extend>
+

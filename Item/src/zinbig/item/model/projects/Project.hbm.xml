@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="zinbig.item.model.projects">
+	<class name="Project" table="project">
+	
+	
+		<id name="oid" type="string" column="OID_PROJECT" >
+<!--			<generator class="org.hibernate.id.TableHiLoGenerator" />-->
+<generator class="assigned"></generator>
+		</id>
+
+		<version column="version_id" name="version"/>
+	
+		<property name="name" length="50"/>
+		<property name="shortName" column="short_name" length="4"/>
+		<property name="publicProject" column="public_project" />
+		<property name="nextItemId" column="next_id" />
+		<property name="projectLink" column="project_link" length="50"/>
+		<property name="itemResponsibleAssignmentStrategyClassName" column="item_assignment_strategy" length="100"/>
+
+		<many-to-one lazy="proxy" name="prioritySet" column="OID_PRIORITY_SET"
+			not-null="true" class="zinbig.item.model.projects.PrioritySet" cascade="all" />
+			
+		<many-to-one lazy="proxy" name="projectLeader" column="OID_PROJECT_LEADER"
+			not-null="true" class="zinbig.item.model.users.User" cascade="all" />	
+		
+		<many-to-one lazy="proxy" name="workflowDescription" column="OID_WORKFLOW_DESCRIPTION"
+			not-null="true" class="zinbig.item.model.workflow.WorkflowDescription" cascade="all" />	
+			
+		<bag name="items" lazy="extra" cascade="all">
+			<key column="OID_PROJECT" not-null="false" />
+			<one-to-many class="zinbig.item.model.Item" />
+		</bag>
+		
+		<bag name="itemTypes" lazy="extra" cascade="all">
+			<key column="OID_PROJECT" not-null="false" />
+			<one-to-many class="zinbig.item.model.ItemType" />
+		</bag>
+		
+		<bag name="itemProperties" lazy="extra" cascade="all">
+			<key column="OID_PROJECT" not-null="false" />
+			<one-to-many class="zinbig.item.model.properties.PropertyDescription" />
+		</bag>
+
+		<bag name="userGroups" lazy="extra" cascade="all" table="user_group_project">
+			<key column="OID_PROJECT" not-null="false" />
+			<many-to-many column="oid_user_group" class="zinbig.item.model.users.UserGroup" />
+		</bag>
+	</class>
+
+
+</hibernate-mapping>

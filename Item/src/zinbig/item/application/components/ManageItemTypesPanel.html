@@ -1,0 +1,57 @@
+<wicket:panel>
+<div class="tab">
+		<form wicket:id="addItemTypeForm" >
+			<div class="small">
+				<div class="headingRequired">  
+					<div>  
+					<wicket:message key="addItemTypeForm.title">Título</wicket:message>&nbsp;<div class="requiredField">*</div>
+					</div>						
+					<input tabindex=1 type="text" wicket:id="titleAITF" />
+					<img src=""	wicket:id="indicatorImg" style="position:relative; top:3px; left: 10px;display:none;" />
+					<div class="errorC" wicket:id="titleAITFFeedback"></div>	
+				</div> 				
+			</div>
+			<div class="heading" style="width: 100%;height: 40px;">
+			
+			</div>
+			<a wicket:id="cancelLink" class="button"><wicket:message key="addItemTypeForm.cancel">Cancelar</wicket:message></a>
+			&nbsp;
+			<a wicket:id="submitLink" class="sendButtonRight"><wicket:message key="addItemTypeForm.send">Enviar</wicket:message></a>
+
+			</form>
+	<div class="heading" style="width: 100%;height: 20px;">
+			
+	</div>
+	<br></br>
+	<div class="warning2" wicket:id="noResultsLabel">
+	</div>
+	<form wicket:id="deleteItemTypesForm">
+	 <div class="errorControlTableTab" wicket:id="feedback">Feedback</div> 
+	
+
+	<div class="controlsTable">
+		<ul class="actionTable">			
+            <li><a class="delete" wicket:id="deleteItemTypesLink"><wicket:message key="manageItemTypesPanel.deleteItemTypes">Eliminar tipos de ítems</wicket:message></a></li>            
+        </ul>    
+         
+	</div>
+	<span wicket:id="group">
+	<table class="grilla"  cellpadding="0" cellspacing="0">
+         	<tr style="height: 20px;">
+            	<th style="width: 20px;"><input type="checkbox" wicket:id="groupselector">&nbsp;</input></th>
+                <th style="width: 10px;" >&nbsp;</th>
+                <th ><a wicket:id="sortByTitleLink"><wicket:message key="manageItemTypesPanel.title">Título</wicket:message></a></th>				
+                <th ><wicket:message key="manageItemTypesPanel.referencesCount">Referencias</wicket:message></th>
+            </tr>
+           	<tr wicket:id="pageable">
+				<td><input style="display:block!important;"  type="checkbox" wicket:id="cb"/></td>
+				<td><img src="/Item/images/blank.png" alt="No se borra"/></td>	
+				<td><span wicket:id="title">Título</span></td>
+				<td><span wicket:id="referencesCount">Referencias</span></td>
+			</tr>
+	</table>	
+	</span>
+
+</form>	
+</div>
+</wicket:panel>

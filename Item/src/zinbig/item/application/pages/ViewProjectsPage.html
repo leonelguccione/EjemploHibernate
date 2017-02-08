@@ -1,0 +1,49 @@
+<wicket:extend>
+	<span class="listingH2"><wicket:message
+		key="ViewProjectsPage.title">Proyectos</wicket:message></span>
+	<form wicket:id="listProjectsForm">
+	 <div class="errorControlTable" wicket:id="feedback">Feedback</div> 
+	<div class="controlsTable">
+	<ul class="actionTable">
+		<li><div class="listCount"><wicket:message
+			key="ViewProjectsPage.found">Hallados</wicket:message>:&nbsp;<span wicket:id="count">0</span></div></li>&nbsp;
+		<li><a class="star" wicket:id="favoriteLink"><wicket:message
+			key="ViewProjectsPage.favorite">Marcar como favoritos</wicket:message></a></li>
+
+		
+	</ul>
+
+	</div>
+	<span wicket:id="group">
+	<table class="grilla" cellpadding="0" cellspacing="0">
+		<tr style="height: 20px;">
+			<th style="width: 20px"><input  type="checkbox" wicket:id="groupselector">&nbsp;</input></th>
+            <th style="width: 10px" >&nbsp;</th>
+			<th ><a wicket:id="sortByNameLink"><wicket:message
+				key="ViewProjectsPage.name">Nombre</wicket:message></a></th>
+			<th ><wicket:message
+				key="ViewProjectsPage.shortname">Nombre corto</wicket:message></th>
+			<th ><wicket:message
+				key="ViewProjectsPage.itemsCount">Ítems</wicket:message></th>
+			<th ><wicket:message
+				key="ViewProjectsPage.link">Link</wicket:message></th>	
+
+		</tr>
+		<tr wicket:id="pageable">
+			<td><input  type="checkbox" wicket:id="cb"/></td>
+			<td><img src="/Item/images/blank.png"/></td>	
+			<td><a class="tableLink" wicket:id="viewLink"><span wicket:id="name">Nombre</span></a></td>
+			<td><span wicket:id="shortname">Nombre corto</span></td>
+			<td><span wicket:id="itemsCount">Items</span></td>
+			<td><a target="other" class="tableLink" wicket:id="linkLink"></a></td>
+
+		</tr>
+	</table>
+	</span>
+	<div class="navigator" wicket:id="navigator">[dataview navigator]</div>
+	</form>
+	<div class="itemsPerPageClass"
+		wicket:id="itemsPerPageSelectionComponent"></div>
+		
+</wicket:extend>
+

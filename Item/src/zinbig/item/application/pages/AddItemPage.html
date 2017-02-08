@@ -1,0 +1,84 @@
+<wicket:extend>
+<div class="tab" >
+	<h2><wicket:message key="addItemForm.title">Nuevo ítem</wicket:message></h2>
+	<span class="warning" wicket:id="lastItemId"></span>
+	<a class="viewAllLink" wicket:id="viewAllLink"><wicket:message
+		key="addItemPage.viewAll"></wicket:message></a>
+		
+	<form wicket:id="addItemForm">
+	<div class="small">
+		
+		<div class="headingRequired">  
+			<div> 
+			<wicket:message key="addItemForm.project">Proyecto</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<select class="select" tabindex=1 wicket:id="project"></select>
+			<div class="errorC" wicket:id="projectAIFFeedback"></div>
+		</div>	
+		<div class="headingRequired">  
+			<div> 
+			<wicket:message key="addItemForm.itemTitle">Título</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=2 type="text" wicket:id="titleAIF" />
+			<div class="errorC" wicket:id="titleAIFFeedback"></div>
+		</div>
+		<div class="headingRequired">  
+			<div> 	
+			<wicket:message key="addItemForm.description">Descripción</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<textarea class="textarea" tabindex=3 wicket:id="descriptionAIF" ></textarea>
+			<div class="errorT" wicket:id="descriptionAIFFeedback"></div>
+		</div>
+		<div class="headingRequired">  
+			<div> 
+			<wicket:message key="addItemForm.itemType">Tipo de ítem</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<select class="select" tabindex=4 wicket:id="itemType">	</select>
+			<div class="errorS" wicket:id="itemTypeAIFFeedback"></div>
+		</div>	
+		<div class="headingRequired">  
+			<div> 
+			<wicket:message key="addItemForm.priority">Prioridad</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<select class="select" tabindex=5 wicket:id="priority">	</select>
+			<div class="errorS" wicket:id="priorityAIFFeedback"></div>
+		</div>	
+		<div class="headingRequired">  
+			<div>
+			<wicket:message key="addItemForm.state">Estado inicial</wicket:message>	&nbsp;<div class="requiredField">*</div>
+			</div>
+			<select class="select" tabindex=6 wicket:id="state">		</select>
+			<div class="errorS" wicket:id="stateAIFFeedback"></div>
+		</div>	
+		<div class="heading">  
+			<div>
+			<wicket:message key="addItemForm.responsible">Responsable</wicket:message>
+			</div>
+			<select class="select" tabindex=7 wicket:id="responsible">	</select>
+			<div class="errorS" wicket:id="responsibleAIFFeedback"></div>
+		</div>
+		<div class="heading">  
+			<div>
+			<wicket:message key="addItemForm.attachedFiles">Archivos adjuntos</wicket:message>
+			</div>
+			<input wicket:id="attachedFile" type="file"/>
+		</div>
+		<div class="heading" style="width: 100%;height: 10px;">
+			
+		</div>	
+		<div wicket:id="propertyPanels"  >
+		
+		</div>					
+	</div>	
+	<div class="heading" style="width: 100%;height: 10px;">
+			
+	</div>	
+	<a wicket:id="cancelLink" class="button"><wicket:message key="addItemForm.cancel">Cancelar</wicket:message></a>
+			&nbsp;
+			<a wicket:id="submitLink" class="sendButtonRight"><wicket:message key="addItemForm.send">Enviar</wicket:message></a>
+		
+	</form>
+
+</div>
+</wicket:extend>
+

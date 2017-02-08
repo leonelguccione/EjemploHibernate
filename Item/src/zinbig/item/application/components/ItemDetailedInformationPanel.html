@@ -1,0 +1,172 @@
+<wicket:panel>
+<div class="tab">
+		<div class="small">
+		<a class="printer" wicket:id="printLink" target="other"><span wicket:id="printLabel">Imprimir</span></a>
+		<br></br>
+			<table width="550" border="0" align="center" cellpadding="0" cellspacing="0">
+  				<tr class="lineTable">
+  					 <td colspan="2" class="textH1"><wicket:message key="editItemForm.basicData">Datos básicos</wicket:message></td>  					 
+  				</tr>
+  				<tr class="lineTable">
+  					 <td class="text"><wicket:message key="editItemForm.id">Id</wicket:message>:</td>
+  					 <td class="title">&nbsp;<span wicket:id="itemId"></span></td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td class="text"><wicket:message key="editItemForm.project">Proyecto</wicket:message>:</td>
+  					 <td class="title">&nbsp;<span wicket:id="project"></span></td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td class="text"><wicket:message key="editItemForm.title">Título</wicket:message>:</td>
+  					 <td class="title">&nbsp;<span wicket:id="title"></span></td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td class="text"><wicket:message key="editItemForm.creationDate">Fecha de creación</wicket:message>:</td>
+  					 <td class="title">&nbsp;<span wicket:id="creationDate"></span></td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td class="text"><wicket:message key="editItemForm.creator">Creador</wicket:message>:</td>
+  					 <td class="title">&nbsp;<span wicket:id="creator"></span></td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td class="text"><wicket:message key="editItemForm.currentResponsible">Responsable</wicket:message>:</td>
+  					 <td class="title">&nbsp;<span wicket:id="itemResponsible"></span></td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td class="text"><wicket:message key="editItemForm.description">Descripción</wicket:message>:</td>
+  					 <td class="title">&nbsp;<span wicket:id="description"></span></td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td class="text"><wicket:message key="editItemForm.state">Estado</wicket:message>:</td>
+  					 <td class="title">&nbsp;<span wicket:id="state"></span></td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td class="text"><wicket:message key="editItemForm.node">Nodo</wicket:message>:</td>
+  					 <td class="title">&nbsp;<span wicket:id="node"></span></td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td class="text"><wicket:message key="editItemForm.itemType">Tipo de ítem</wicket:message>:</td>
+  					 <td class="title">&nbsp;<span wicket:id="itemType"></span></td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td class="text"><wicket:message key="editItemForm.priority">Prioridad</wicket:message>:</td>
+  					 <td class="title">&nbsp;<span wicket:id="priority"></span></td>
+  				</tr>
+  				<tr>
+  					<td>
+  					&nbsp;
+  					</td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td colspan="2" class="textH1"><wicket:message key="editItemForm.additionalProperties">Propiedades adicionales</wicket:message></td>  					 
+  				</tr>
+  				<tr>
+  					<td colspan="2">
+  					<table class="grilla2" cellpadding="0" cellspacing="0">
+         				<tr style="height: 20px;">            				
+                			<td class="text" style="width: 30%"><wicket:message key="editItemForm.additionalPropertyName">Nombre</wicket:message></td>				
+                			<td class="text" style="width: 70%"><wicket:message key="editItemForm.additionalPropertyValue">Valor</wicket:message></td>               				
+          				</tr>
+           				<tr wicket:id="pageableProperties">							
+							<td class="title"><span wicket:id="propertyName">Propiedad</span></td>				
+							<td class="title"><span wicket:id="propertyValue">Valor</span></td>
+						</tr>
+					</table>	
+  					</td>
+  				</tr>
+  				<tr>
+  					<td>
+  					&nbsp;
+  					</td>
+  				</tr>
+  				
+  				<tr class="lineTable">
+  					 <td colspan="2" class="textH1"><wicket:message key="editItemForm.comments">Comentarios</wicket:message></td>  					 
+  				</tr>
+  				<tr>
+  					<td colspan="2">
+  					<table class="grilla2" cellpadding="0" cellspacing="0">
+         				<tr style="height: 20px;">            				
+                			<td class="text" style="width: 60%"><wicket:message key="editItemCommentForm.comment">Comentario</wicket:message></td>				
+                			<td class="text" style="width: 25%"><wicket:message key="editItemCommentForm.date">Fecha</wicket:message></td>
+               				<td class="text" style="width: 15%"><wicket:message key="editItemCommentForm.creator">Creador</wicket:message></td>
+          				</tr>
+           				<tr wicket:id="pageable">							
+							<td class="title"><span wicket:id="comment">Commentario</span></td>				
+							<td class="title"><span wicket:id="date">Fecha</span></td>
+							<td class="title"><span wicket:id="creator">Creador</span></td>
+						</tr>
+					</table>	
+  					</td>
+  				</tr>
+  				<tr>
+  					<td>
+  					&nbsp;
+  					</td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td colspan="2" class="textH1"><wicket:message key="editItemForm.oldWorkflowNodes">Estados anteriores</wicket:message></td>  					 
+  				</tr>
+  				<tr>
+  					<td colspan="2">
+  					<table class="grilla2" cellpadding="0" cellspacing="0">
+         				<tr style="height: 20px;">            	
+                			<td class="text" style="width: 30%"><wicket:message key="editItemForm.title">Título</wicket:message></td>				
+                			<td class="text" style="width: 30%"><wicket:message key="editItemForm.creationDate">Fecha creación</wicket:message></td>
+                			<td class="text" style="width: 40%"><wicket:message key="editItemForm.responsible">Responsable</wicket:message></td>                 
+            			</tr>
+           				<tr wicket:id="oldNodesPageable">
+							<td class="title"><span wicket:id="title">Título</span></td>				
+							<td class="title"><span wicket:id="creationDate">Fecha</span></td>
+							<td class="title"><span wicket:id="responsible">Responsable</span></td>
+						</tr>
+					</table>
+  					</td>
+  				</tr>	
+  				<tr>
+  					<td>
+  					&nbsp;
+  					</td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td colspan="2" class="textH1"><wicket:message key="editItemForm.attachedFiles">Archivos adjuntos</wicket:message></td>  					 
+  				</tr>
+  				<tr>
+  					<td colspan="2">
+  					<table class="grilla2" cellpadding="0" cellspacing="0">
+         				<tr style="height: 20px;">            	
+                			<td class="text" style="width: 70%"><wicket:message key="attachFileForm.filename">Archivo</wicket:message></td>				
+                			<td class="text" style="width: 30%"><wicket:message key="attachFileForm.date">Fecha</wicket:message></td>                
+            			</tr>
+           				<tr wicket:id="attachedPageable">
+							<td class="title"><a class="downloadLink" wicket:id="fileLink"><span wicket:id="filename">Archivo</span></a>   </td>				
+							<td class="title"><span wicket:id="creationDate">Fecha</span></td>
+						</tr>
+					</table>
+  					</td>
+  				</tr>	
+  				<tr>
+  					<td>
+  					&nbsp;
+  					</td>
+  				</tr>
+  				<tr class="lineTable">
+  					 <td colspan="2" class="textH1"><wicket:message key="editItemForm.observers">Usuarios interesados</wicket:message></td>  					 
+  				</tr>
+  				<tr>
+  					<td colspan="2">
+  					<table class="grilla2" cellpadding="0" cellspacing="0">
+         				<tr style="height: 20px;">            	
+                			<td class="text" style="width: 70%"><wicket:message key="editItemForm.username">Usuario</wicket:message></td>				
+                			                
+            			</tr>
+           				<tr wicket:id="observersPageable">											
+							<td class="title"><span wicket:id="observer">Usuario</span></td>
+						</tr>
+					</table>
+  					</td>
+  				</tr>	
+  			</table>	
+			
+	</div>		
+</div>
+</wicket:panel>

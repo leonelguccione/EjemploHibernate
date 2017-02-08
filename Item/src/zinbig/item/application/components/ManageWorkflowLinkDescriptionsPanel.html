@@ -1,0 +1,83 @@
+<wicket:panel>
+<div class="tab">
+	<form wicket:id="addWorkflowLinkDescriptionForm">
+	<div class="small">
+		<div class="headingRequired">  
+			<div> 
+		    <wicket:message key="addWorkflowLinkDescriptionForm.linkTitle">Título</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=1 type="text" wicket:id="titleAWLDF" />
+			<img src=""	wicket:id="indicatorImg" style="position:relative; top:3px; left: 10px;display:none;" />
+			<div class="errorC" wicket:id="titleAWNLFFeedback"></div>
+		</div>
+		<div class="headingRequired">
+			<div>
+			<wicket:message key="addWorkflowLinkDescriptionForm.initialNode">Nodo inicial</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<select tabindex=2 class="select" wicket:id="initialNodeDescription"></select>
+			<div class="errorS" wicket:id="initialNodeAWLDFFeedback"></div>
+		</div>
+		<div class="heading" style="width: 100%;height: 10px;">
+			
+		</div>
+		<div class="headingRequired">
+			<div>
+			<wicket:message key="addWorkflowLinkDescriptionForm.finalNode">Nodo final</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<select tabindex=3 class="select" wicket:id="finalNodeDescription"></select>
+			<div class="errorS" wicket:id="finalNodeAWLDFFeedback"></div>
+		</div>
+		<div class="heading" style="width: 100%;height: 10px;">
+			
+		</div>
+		<div class="headingRequired">  
+					<wicket:message key="addWorkflowLinkDescriptionForm.itemTypes">Tipos de ítems</wicket:message>&nbsp;<div class="requiredField">*</div>
+		</div>
+		<div class="headingRequired"> 		
+			<div wicket:id="itemTypesPalette"></div>
+		</div>
+	</div>
+	<div class="heading" style="width: 100%;height: 10px;">
+			
+	</div>
+	<input class="resetButton" type="Reset"/>
+	<a wicket:id="saveLink" class="sendButtonRight"><wicket:message	key="addWorkflowLinkDescriptionForm.save">Enviar</wicket:message></a>
+	</form>
+	<div class="heading" style="width: 100%;height: 20px;">
+			
+	</div>
+	<div class="warning2" wicket:id="noResultsLabel">
+	</div>
+	<form wicket:id="deleteWorkflowLinkDescriptionsForm">
+	<div class="errorControlTableTab" wicket:id="feedback">Feedback</div> 
+	
+
+	<div class="controlsTable">
+		<ul class="actionTable">			
+            <li><a class="delete" wicket:id="deleteWorkflowLinkDescriptionsLink"><wicket:message key="deleteWorkflowLinkDescriptionsForm.deleteLinks">Eliminar enlaces</wicket:message></a></li>            
+        </ul>    
+         
+	</div>
+	<span wicket:id="group">
+	<table class="grilla"  cellpadding="0" cellspacing="0">
+         	<tr style="height: 20px;">
+            	<th style="width: 20px"><input  type="checkbox" wicket:id="groupselector">&nbsp;</input></th>
+                <th style="width: 10px" >&nbsp;</th>
+                <th ><a wicket:id="sortByTitleLink"><wicket:message key="deleteWorkflowLinkDescriptionsForm.title">Título</wicket:message></a></th>
+                <th ><wicket:message key="deleteWorkflowLinkDescriptionsForm.initialNode">Nodo inicial</wicket:message></th>
+                <th ><wicket:message key="deleteWorkflowLinkDescriptionsForm.finalNode">Nodo final</wicket:message></th>				
+                
+            </tr>
+           	<tr wicket:id="pageable">
+				<td><input type="checkbox" wicket:id="cb"/></td>
+				<td><img src="/Item/images/blank.png"/></td>	
+				<td><span wicket:id="title">Título</span></td>
+				<td><span wicket:id="initialNode">Nodo inicial</span></td>
+				<td><span wicket:id="finalNode">Nodo final</span></td>
+			</tr>
+	</table>	
+	</span>
+
+</form>	
+</div>
+</wicket:panel>

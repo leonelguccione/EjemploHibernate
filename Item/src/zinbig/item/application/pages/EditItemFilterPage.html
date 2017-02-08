@@ -1,0 +1,119 @@
+<wicket:extend>
+<div class="tab" >
+ 
+ <h2><wicket:message key="editItemFilterForm.pageTitle">Edición de filtro de ítem</wicket:message>
+ <span wicket:id="filterTitle"></span>
+ </h2>
+
+	<a class="viewAllLink" wicket:id="viewAllLink"><wicket:message
+		key="editItemFilterPage.viewAll"></wicket:message></a>
+	
+	<table style="width:250px">
+		<form wicket:id="editItemFilterForm">			
+			<tr>
+				<td>
+				<div class="headingEF">
+					<div>
+					<wicket:message key="itemsFilterPanel.project">Proyecto</wicket:message>
+					</div>
+					<select style="width: 160px" tabindex=1 class="otherFiltersSelectList" wicket:id="selectedFilterComponentByProjects"></select>
+				</div>
+				</td>
+				<td class="headingN">
+				~
+				<input type="checkbox" wicket:id="negateProjectCheckbox"></input>	
+				</td>	
+			</tr>
+			<tr>
+				<td>
+				<div class="headingEF">
+					<div>
+					<wicket:message key="itemsFilterPanel.responsible">Responsable</wicket:message>
+					</div>
+					<select style="width: 160px" tabindex=2 class="otherFiltersSelectList" wicket:id="itemResponsibles"></select>
+				</div>
+				</td>
+				<td class="headingN">
+				~
+				<input wicket:id="negateItemResponsibleCheckbox" type="checkbox"></input>
+				</td>	
+			</tr>
+			<tr>
+				<td>
+				<div class="headingEF">
+					<div>
+					<wicket:message key="itemsFilterPanel.node">Nodo</wicket:message>
+					</div>
+					<select style="width: 160px" tabindex=3 class="otherFiltersSelectList" wicket:id="nodes"></select>
+				</div>
+				</td>
+				<td class="headingN">
+				~
+				<input type="checkbox" wicket:id="negateNodeCheckbox"></input>	
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<div class="headingEF">
+					<div>
+					<wicket:message key="itemsFilterPanel.state">Estado</wicket:message>
+					</div>
+					<select style="width: 160px" tabindex=4 class="otherFiltersSelectList" wicket:id="itemStates"></select>					
+				</div>
+				</td>
+				<td class="headingN">
+				~
+				<input type="checkbox" wicket:id="negateItemStateCheckbox"></input>	
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<div class="headingEF">
+					<div>
+					<wicket:message key="itemsFilterPanel.type">Tipo</wicket:message>
+					</div>
+					<select style="width: 160px" tabindex=5 class="otherFiltersSelectList" wicket:id="itemTypes"></select>
+				</div>
+				</td>
+				<td class="headingN">
+				~
+				<input type="checkbox" wicket:id="negateItemTypeCheckbox"></input>	
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<div class="headingF">
+					<div>
+					<wicket:message key="itemsFilterPanel.Text">Texto libre</wicket:message>
+					</div>
+					<input class="input2" type="text" wicket:id="freeText" /> 
+				</div>
+				</td>
+				
+			</tr>
+			<tr>
+				<td>
+				<div class="headingEF" style="height: 10px;">
+			
+				</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				
+				<a class="button"  wicket:id="viewLink"><wicket:message key="itemsFilterPanel.save">Ver</wicket:message></a>
+				
+				</td>
+			</tr>	
+					
+					
+
+			</form>	
+			</table>	
+	
+	
+</div>
+	
+	
+</wicket:extend>
+

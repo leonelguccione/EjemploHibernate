@@ -1,0 +1,58 @@
+<wicket:extend>
+<table width="100%;" >
+<tr>
+<td>
+<span class="listingH2"><wicket:message key="projectsAdministrationPage.title">Proyectos</wicket:message></span>
+</td>
+</tr>
+<form wicket:id="listProjectsForm">
+<tr>
+	<td>
+	<div class="controlsTable">
+		<ul class="actionTable">
+			<li><div class="listCount"><wicket:message
+			key="projectsAdministrationPage.found">Hallados</wicket:message>:&nbsp;<span wicket:id="count">0</span></div></li>&nbsp;
+			<!-- Link para dar de alta un nuevo proyecto. -->
+        	<li><a class="new" wicket:id="newProjectLink"><wicket:message key="projectsAdministrationPage.newProject">Nuevo proyecto</wicket:message></a></li>
+            <li><a class="delete" wicket:id="deleteProjectsLink"><wicket:message key="projectsAdministrationPage.deleteProjects">Eliminar proyectos</wicket:message></a></li>
+        </ul>            
+	</div>
+	<div class="errorControlTable" wicket:id="feedback">Feedback</div> 
+	</td>
+</tr>	
+<tr>
+	<td>	
+	<span wicket:id="group">
+	<table class="grilla"  cellpadding="0" cellspacing="0">
+         	<tr style="height: 20px;">
+            	<th style="width:20px"><input  type="checkbox" wicket:id="groupselector">&nbsp;</input></th>
+                <th style="width:10px" >&nbsp;</th>
+                <th ><a wicket:id="sortByNameLink"><wicket:message key="projectsAdministrationPage.name">Nombre</wicket:message></a></th>
+				<th ><wicket:message key="projectsAdministrationPage.shortname">Nombre corto</wicket:message></th>			
+				<th ><a wicket:id="sortByLinkLink"><wicket:message key="projectsAdministrationPage.link">Líder</wicket:message></a></th>
+            </tr>
+           	<tr wicket:id="pageable">
+				<td><input style="display:block!important;" type="checkbox" wicket:id="cb"/></td>
+				<td><img src="/Item/images/blank.png" alt="bloqueado"/></td>
+				<td><a class="downloadLink" wicket:id="editLink"><span wicket:id="name">Nombre</span></a></td>
+				<td><span wicket:id="shortname">Nombre corto</span></td>			
+				<td><span wicket:id="link">Líder</span></td>
+			</tr>
+	</table>	
+	</span>
+	</td>
+</tr>
+<tr>
+	<td>	
+	<div class="navigator" wicket:id="navigator">[dataview navigator]</div>
+</td>
+</tr>
+</form>
+<tr>
+<td>
+<div class="itemsPerPageClass" wicket:id="itemsPerPageSelectionComponent"></div>
+</td>
+</tr>
+</table>
+</wicket:extend>
+

@@ -1,0 +1,72 @@
+<wicket:extend>
+
+ <div class="tab" >
+ 
+ <h2><wicket:message key="editUserForm.title">Edición de usuario</wicket:message></h2>
+ 
+ 	<a class="viewAllLink" wicket:id="viewAllLink"><wicket:message
+		key="editUserPage.viewAll"></wicket:message></a>
+ 	<form wicket:id="editUserForm">
+	<div class="small">
+		<div class="heading">  
+			<div> 
+			<wicket:message key="editUserForm.username">Username</wicket:message>
+			</div>
+			<div style="font-weight: bold;" wicket:id="username">Username</div>	
+		</div>
+		<div class="headingRequired">  
+			<div>  
+			<wicket:message key="editUserForm.name">Nombre</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=1 type="text" wicket:id="nameEUF" /> 
+			<div class="errorC" wicket:id="nameEUFFeedback"></div>
+		</div>		
+		<div class="headingRequired">  
+			<div> 
+			<wicket:message key="editUserForm.surname">Apellido</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=2 type="text" wicket:id="surnameEUF" /> 
+			<div class="errorC" wicket:id="surnameEUFFeedback"></div>
+		</div>	
+		<div class="headingRequired">  
+			<div> 
+			<wicket:message key="editUserForm.email">Email</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=3 type="text" wicket:id="emailEUF" />
+			<div class="errorC" wicket:id="emailEUFFeedback"></div>
+		</div>	
+		<div class="headingRequired">  
+			<div> 
+			<wicket:message key="editUserForm.password">Clave</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=4 type="password" wicket:id="passwordEUF" />
+			<div class="errorC" wicket:id="passwordEUFFeedback"></div>
+		</div>
+		<div class="headingRequired">  
+			<div> 
+			<wicket:message key="editUserForm.passwordConfirmation">Confirmación de clave</wicket:message>&nbsp;<div class="requiredField">*</div>
+			</div>
+			<input tabindex=5 type="password" wicket:id="passwordConfirmationEUF" />
+			<div class="errorC" wicket:id="passwordConfirmationEUFFeedback"></div>
+		</div>
+		<div class="heading">  
+		<wicket:message key="editUserForm.groups">Grupos</wicket:message>
+		</div>
+		<div class="heading"> 		
+			<div wicket:id="usergroupsPalette"></div>
+		</div>		
+	</div>
+	<div class="heading" style="width: 100%;height: 10px;">
+			
+	</div>		
+	
+	<a wicket:id="cancelLink" class="button"><wicket:message key="editUserForm.cancel">Cancelar</wicket:message></a>
+	&nbsp;
+	<a wicket:id="submitLink" class="sendButtonRight"><wicket:message key="editUserForm.send">Enviar</wicket:message></a>		
+
+	</form>
+			
+		
+ </div>
+</wicket:extend>
+
