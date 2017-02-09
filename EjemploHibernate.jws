@@ -27,5 +27,7 @@
       <hash><url n="URL" path="EjemploHibernate/EjemploHibernate.jpr"/></hash>
       <hash><url n="URL" path="EjemploLaliLuna/EjemploLaliLuna.jpr"/></hash>
       <hash><url n="URL" path="Item/Item.jpr"/></hash>
+      <hash><url n="URL" path="Model_Ejb_Proyect/Model_Ejb_Proyect.jpr"/></hash>
+      <hash><url n="URL" path="Model2_Ejb_Proyect/Model2_Ejb_Proyect.jpr"/></hash>
    </list>
 </jws:workspace>

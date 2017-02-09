@@ -4,6 +4,7 @@ import de.laliluna.hibernate.InitSessionFactory;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
@@ -99,30 +100,50 @@ public class TestExample
             log.debug(element);
         }
         tx.commit();
-//        session.close();
+        //        session.close();
     }
 
     public static void main(String[] args)
-    {        
+    {
+        Scanner sc = new Scanner(System.in);
+        String a[] = new String[7];
+        a[0] = "SALIR";
+        a[1] = "limpiar";
+        a[2] = "crearHoney";
+        a[3] = "createRelation";
+        a[4] = "delete";
+        a[5] = "update";
+        a[6] = "query";
+        int op;
         try
         {
-            /* clean tables */
-            //clean();
-
-            /* simple create example */
-            createHoney();
-
-            /* relation example */
-            createRelation();
-
-            /* delete example */
-            //delete();
-
-            /* update example */
-            //update();
-
-            /* query example */
-            query();
+            //gran pedorrada
+            System.out.println("elija opción \n");
+            int i = 0;
+            for (i = 0; i < 7; i++)
+                System.out.println(a[i] + "\n");
+            op = sc.nextInt();
+            switch (op)
+            {
+            case 1:
+                clean();
+                break;
+            case 2:
+                createHoney();
+                break;
+            case 3:
+                createRelation();
+                break;
+            case 4:
+                delete();
+                break;
+            case 5:
+                update();
+                break;
+            case 6:
+                query();
+                break;
+            }
         }
         catch (RuntimeException e)
         {
