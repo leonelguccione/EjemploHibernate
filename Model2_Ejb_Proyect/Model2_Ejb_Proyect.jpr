@@ -70,6 +70,10 @@
    </list>
    <value n="defaultPackage" v="model2_ejb_proyect"/>
    <hash n="ejbModuleContainer">
+      <hash n="ejb21IdToEjbNameMap">
+         <value n="ejb:23009752-015a-1000-8001-7f0001017e93" v="Honey"/>
+         <value n="ejb:23009785-015a-1000-8002-7f0001017e93" v="E_Bee"/>
+      </hash>
       <hash n="ejbDiagramToPuMap">
          <hash n="model">
             <hash n="model2_ejb_proyect">

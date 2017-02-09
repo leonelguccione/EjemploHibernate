@@ -5,6 +5,7 @@
   <persistence-unit name="Model2_Ejb_Proyect">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>model2_ejb_proyect.Honey</class>
+    <class>model2_ejb_proyect.E_Bee</class>
     <properties>
       <property name="eclipselink.target-server" value="WebLogic_10"/>
     </properties>

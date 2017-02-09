@@ -6,5 +6,8 @@
     <entity>
       <ejb-name>Honey</ejb-name>
     </entity>
+    <entity>
+      <ejb-name>E_Bee</ejb-name>
+    </entity>
   </enterprise-beans>
 </ejb-jar>

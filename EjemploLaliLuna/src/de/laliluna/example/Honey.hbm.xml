@@ -3,14 +3,14 @@
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping package="de.laliluna.example">
   <class name="Honey" table="thoney">
-     <id name="id" column="id">
+     <id name="id" column="honey_id">
         <generator class="native" />
      </id>
      <property name="name" type="string"></property>
      <property name="taste" type="string"></property>
-     <set name="bees" inverse="true">
+     <set name="bees" inverse="true" cascade="all">
         <key column="honey_id"></key>
-        <one-to-many class="Honey" />
+        <one-to-many class="Bee" />
      </set>
   </class>
 </hibernate-mapping>

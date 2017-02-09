@@ -2,29 +2,26 @@ package model2_ejb_proyect;
 
 import java.io.Serializable;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "Honey.findAll", query = "select o from Honey o") })
-public class Honey implements Serializable
+@NamedQueries({ @NamedQuery(name = "E_Bee.findAll", query = "select o from E_Bee o") })
+public class E_Bee extends Bee implements Serializable
 {
-    private static final long serialVersionUID = -5140906016257115833L;
+    private static final long serialVersionUID = -7357389235551954082L;
     @Id
     private Integer id;
     @Version
     private Integer version;
-    @OneToMany(mappedBy = "honey1")
-    private List<E_Bee> e_BeeList;
+    @ManyToOne
+    private Honey honey1;
 
-    public Honey()
+    public E_Bee()
     {
     }
 
@@ -49,13 +46,13 @@ public class Honey implements Serializable
     }
 
 
-    public List<E_Bee> getE_BeeList()
+    public Honey getHoney1()
     {
-        return e_BeeList;
+        return honey1;
     }
 
-    public void setE_BeeList(List<E_Bee> e_BeeList)
+    public void setHoney1(Honey honey1)
     {
-        this.e_BeeList = e_BeeList;
+        this.honey1 = honey1;
     }
 }

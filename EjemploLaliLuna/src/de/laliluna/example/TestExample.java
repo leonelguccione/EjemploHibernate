@@ -8,16 +8,15 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class TestExample
 {
-    private static Logger log = Logger.getLogger(TestExample.class);
+    private Logger log = Logger.getLogger(TestExample.class);
 
 
-    private static Honey createHoney()
+    private Honey createHoney()
     {
         Honey forestHoney = new Honey();
         forestHoney.setName("forest honey");
@@ -34,7 +33,7 @@ public class TestExample
     }
 
     //The method update creates a new object using our last method, changes the name and updates the object using session.update.
-    private static void update()
+    private void update()
     {
         Honey honey = createHoney();
         Session session = InitSessionFactory.getInstance().getCurrentSession();
@@ -46,7 +45,7 @@ public class TestExample
     }
 
     //The method delete creates an object and deletes it by calling session.delete.
-    private static void delete()
+    private void delete()
     {
         Honey honey = createHoney();
         Session session = InitSessionFactory.getInstance().getCurrentSession();
@@ -58,7 +57,7 @@ public class TestExample
 
     // The tables are emptied with the method clean.
     // The method session.createQuery creates a new query and runs it by calling executeUpdate.
-    private static void clean()
+    private void clean()
     {
         Session session = InitSessionFactory.getInstance().getCurrentSession();
         Transaction tx = session.beginTransaction();
@@ -70,7 +69,7 @@ public class TestExample
 
     //The method createRelation shows, how to create objects and set an association between these objects.
     //This will write a foreign key relation to the database.
-    private static void createRelation()
+    private void createRelation()
     {
         Session session = InitSessionFactory.getInstance().getCurrentSession();
         Transaction tx = session.beginTransaction();
@@ -89,7 +88,7 @@ public class TestExample
 
     //The method query shows how to query all honeys in the database.
     //The call to session.createQuery creates the query and list() runs the query and returns a list of Honey objects.
-    private static void query()
+    private void query()
     {
         Session session = InitSessionFactory.getInstance().getCurrentSession();
         Transaction tx = session.beginTransaction();
@@ -105,15 +104,16 @@ public class TestExample
 
     public static void main(String[] args)
     {
+        TestExample tx = new TestExample();
         Scanner sc = new Scanner(System.in);
         String a[] = new String[7];
-        a[0] = "SALIR";
-        a[1] = "limpiar";
-        a[2] = "crearHoney";
-        a[3] = "createRelation";
-        a[4] = "delete";
-        a[5] = "update";
-        a[6] = "query";
+        a[0] = "0 - SALIR";
+        a[1] = "1 - limpiar";
+        a[2] = "2 - crearHoney";
+        a[3] = "3 - createRelation";
+        a[4] = "4 - delete";
+        a[5] = "5 - update";
+        a[6] = "6 - query";
         int op;
         try
         {
@@ -122,28 +122,40 @@ public class TestExample
             int i = 0;
             for (i = 0; i < 7; i++)
                 System.out.println(a[i] + "\n");
-            op = sc.nextInt();
-            switch (op)
+            op = 3;
+            System.out.println("opcion electa: " + a[3]);
+            if (op == 1)
             {
-            case 1:
-                clean();
-                break;
-            case 2:
-                createHoney();
-                break;
-            case 3:
-                createRelation();
-                break;
-            case 4:
-                delete();
-                break;
-            case 5:
-                update();
-                break;
-            case 6:
-                query();
-                break;
+                tx.clean();
+                System.out.println("clean listo");
             }
+            else if (op == 2)
+            {
+                tx.createHoney();
+                System.out.println("createHoney listo");
+            }
+
+            else if (op == 3)
+            {
+                tx.createRelation();
+                System.out.println("createRelation listo");
+            }
+            else if (op == 4)
+            {
+                tx.delete();
+                System.out.println("delete listo");
+            }
+            else if (op == 5)
+            {
+                tx.update();
+                System.out.println("update listo");
+            }
+            else if (op == 6)
+            {
+                tx.query();
+                System.out.println("query listo");
+            }
+
         }
         catch (RuntimeException e)
         {
@@ -153,9 +165,9 @@ public class TestExample
                 if (session.getTransaction().isActive())
                     session.getTransaction().rollback();
             }
-            catch (HibernateException el)
+            catch (Exception el)
             {
-                log.error("Fehler beim Rollback der Transaktion");
+                tx.log.error("Fehler beim Rollback der Transaktion");
             }
             throw e;
         }
