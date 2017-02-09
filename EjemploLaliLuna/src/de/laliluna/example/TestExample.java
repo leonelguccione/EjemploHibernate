@@ -16,7 +16,7 @@ public class TestExample
     private Logger log = Logger.getLogger(TestExample.class);
 
 
-    private Honey createHoney()
+    public Honey createHoney()
     {
         Honey forestHoney = new Honey();
         forestHoney.setName("forest honey");
@@ -33,7 +33,7 @@ public class TestExample
     }
 
     //The method update creates a new object using our last method, changes the name and updates the object using session.update.
-    private void update()
+    public void update()
     {
         Honey honey = createHoney();
         Session session = InitSessionFactory.getInstance().getCurrentSession();
@@ -45,7 +45,7 @@ public class TestExample
     }
 
     //The method delete creates an object and deletes it by calling session.delete.
-    private void delete()
+    public void delete()
     {
         Honey honey = createHoney();
         Session session = InitSessionFactory.getInstance().getCurrentSession();
@@ -57,7 +57,7 @@ public class TestExample
 
     // The tables are emptied with the method clean.
     // The method session.createQuery creates a new query and runs it by calling executeUpdate.
-    private void clean()
+    public void clean()
     {
         Session session = InitSessionFactory.getInstance().getCurrentSession();
         Transaction tx = session.beginTransaction();
@@ -69,7 +69,7 @@ public class TestExample
 
     //The method createRelation shows, how to create objects and set an association between these objects.
     //This will write a foreign key relation to the database.
-    private void createRelation()
+    public void createRelation()
     {
         Session session = InitSessionFactory.getInstance().getCurrentSession();
         Transaction tx = session.beginTransaction();
@@ -88,7 +88,7 @@ public class TestExample
 
     //The method query shows how to query all honeys in the database.
     //The call to session.createQuery creates the query and list() runs the query and returns a list of Honey objects.
-    private void query()
+    public List query()
     {
         Session session = InitSessionFactory.getInstance().getCurrentSession();
         Transaction tx = session.beginTransaction();
@@ -100,6 +100,7 @@ public class TestExample
         }
         tx.commit();
         //        session.close();
+        return honeys;
     }
 
     public static void main(String[] args)
@@ -122,8 +123,9 @@ public class TestExample
             int i = 0;
             for (i = 0; i < 7; i++)
                 System.out.println(a[i] + "\n");
-            op = 3;
-            System.out.println("opcion electa: " + a[3]);
+            //op = 3;
+            op = sc.nextInt();
+            System.out.println("opcion electa: " + a[op]);
             if (op == 1)
             {
                 tx.clean();

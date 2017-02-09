@@ -8,6 +8,8 @@
         <generator class="native" />
      </id>
      <property name="name" type="string"></property>
-     <many-to-one name="honey"></many-to-one>
+     <many-to-one name="honey"
+        column= "honey_id"
+        cascade="all"></many-to-one>
   </class>
 </hibernate-mapping>
